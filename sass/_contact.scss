@@ -1,0 +1,29 @@
+.contact{
+
+    width: 90%;
+    margin:50px auto;
+    color: #113c79;
+
+    .contact-container{
+        margin: auto;
+        max-width: 800px;
+        width: 100%;
+     
+       border: 1px rgb(177, 177, 177) solid;
+    
+    }
+    .contact-header{
+        background-color: rgb(236, 236, 236);
+        padding: 10px;
+        align-items: center;
+        font-weight: bold;
+        h2{
+            font-weight: bold;
+          
+        }
+    }
+    .contact-details{
+      
+        padding: 20px;
+    }
+}

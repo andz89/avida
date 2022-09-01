@@ -1,0 +1,13 @@
+.booking-page{
+    height: 500px;
+    .booking-header{
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        align-items: center;
+        h4{
+            font-weight: bold;
+            color: #fff;
+        }
+    }
+}

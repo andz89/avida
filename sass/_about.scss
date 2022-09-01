@@ -1,0 +1,47 @@
+.about-page{
+    background-color: #fff;
+ 
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    .about-page-banner-img{
+        width: 100%;
+    }
+    .about-page-content{
+        margin: 40px 0  ;
+        padding: 20px 50px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 20px;
+        
+        width: 100%;
+
+        .about-details{
+            width: 100%;
+         
+        }
+
+        p{
+            text-indent: 50px;
+        }
+      
+        .feature-image{
+            float: right;
+            width: 25%;
+            margin: 10px;
+            height: auto;
+        
+        }
+       
+    }
+
+  
+
+    h2{
+    font-weight:bold;
+    font-size: 46px;
+   
+    }
+}

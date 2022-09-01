@@ -1,0 +1,41 @@
+/* HOMEPAGE start*/
+
+.banner-image{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    z-index: -9;
+}
+.homepage{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.753);
+    padding: 20px;
+   
+    .homepage-title{
+        padding: 20px;
+        font-size: 87px;
+        font-family: 'Great Vibes', cursive;
+        text-align: center;
+        width: 100%;
+        height: 160px;
+        align-items: center;
+        color:  #113c79;
+    }
+    p{
+       margin-top: -50px;
+       text-transform: uppercase;
+       width:40%;
+    }
+}
+
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+/* HOMEPAGE end*/

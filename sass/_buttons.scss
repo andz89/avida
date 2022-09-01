@@ -1,0 +1,20 @@
+button{
+    cursor: pointer;
+   
+    a{
+        color: #fff;
+    }
+    a:hover{
+        text-decoration: none;
+        color: #fff;
+    }
+}
+
+.discount-btn-container{
+    width: 30%;
+}
+.book-btn-container{
+    button{
+        width: 100%;
+    }
+}
