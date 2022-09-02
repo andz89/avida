@@ -20,8 +20,8 @@ class HotelRoom extends Controller{
        
         $data = [
             'id'=> $rooms->id,
-            'title'=> $rooms->title,
-            'image'=> $rooms->image,
+            'room_name'=> $rooms->room_name,
+            'large_image'=> $rooms->large_image,
             'description_1'=> $rooms->description_1,
             'description_2'=> $rooms->description_2,
         ];

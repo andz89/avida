@@ -11,8 +11,8 @@
  
   room_template(
   $data['id'], 
-  $data['image'], 
-  $data['title'], 
+  $data['large_image'], 
+  $data['room_name'], 
   $data['description_1'], 
   $data['description_2'],
   ) 
