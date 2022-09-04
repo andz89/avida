@@ -8,12 +8,14 @@
 
        // Regsiter user
        public function register($data){
-        $this->db->query('INSERT INTO users (name, email, password,role) VALUES(:name, :email, :password, :role)');
+        $this->db->query('INSERT INTO users (name, email, password,role,contact_number) VALUES(:name, :email, :password, :role, :contact_number)');
         // Bind values
         $this->db->bind(':name', $data['name']);
         $this->db->bind(':email', $data['email']);
         $this->db->bind(':password', $data['password']);
         $this->db->bind(':role', $data['role']);
+        $this->db->bind(':contact_number', $data['contact_number']);
+
 
   
         // Execute
@@ -92,4 +94,71 @@
     
           return $row;
         }
-  }
+
+        public function getAllBookings_as_user($id){
+    
+          $this->db->query('SELECT * FROM book WHERE user_id = :user_id');
+          $this->db->bind(':user_id', $id);
+         
+          $results = $this->db->resultSet();
+         
+          return $results;
+         
+        }
+        public function getAllBookings_as_admin(){
+          $this->db->query('SELECT * FROM book');
+          $results = $this->db->resultSet();
+      
+          return $results;
+        }
+        public function getCountBookings(){
+          $this->db->query('SELECT * FROM book');
+          $results = $this->db->resultSet();
+      
+          return $this->db->rowCount();
+
+        }
+
+        public function getCountUsers(){
+    
+          $this->db->query('SELECT * FROM users');
+         
+          $results = $this->db->resultSet();
+         
+          return $this->db->rowCount();
+         
+    
+        }
+        public function getcontact(){
+    
+          $this->db->query('SELECT * FROM contact');
+
+          $row = $this->db->single();
+          return $row;
+         
+        }
+        public function update_contact($data){
+    
+          $this->db->query('UPDATE contact SET telephone = :telephone, email = :email, address = :address WHERE id = :id');
+          // Bind values
+          $this->db->bind(':id', $data['id']);
+          $this->db->bind(':telephone', $data['telephone']);
+          $this->db->bind(':email', $data['email']);
+          $this->db->bind(':address', $data['address']);
+
+          // $this->db->bind(':image_thumbnail', $data['image_thumbnail']);
+    
+    
+    
+          // Execute
+          if($this->db->execute()){
+            return true;
+          } else {
+            return false;
+          }
+         
+        }
+
+  } 
+     
+

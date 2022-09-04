@@ -1,7 +1,7 @@
 <?php
   // Simple page redirect
   require_once 'button_helper.php';
-  function call_section($param){
+  function call_section(){
  
 echo '
 <div class="call-section-container text-center  ">
@@ -11,7 +11,7 @@ echo '
 
   
 
-<button type="button" class="btn btn-md btn-danger mb-2"><a href= "'.  URLROOT. '/hotelroom/index">  '.$param.' </a> </button> 
+<button type="button" class="btn btn-md btn-danger mb-2"><a href= "'.  URLROOT. '/hotelroom/index"> Book Now </a> </button> 
 
 
 <br>

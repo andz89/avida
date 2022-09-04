@@ -1,9 +1,5 @@
 <?php require APPROOT . '/views/inc/header.php';?>  
-
-<?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin'): ?>
-<?php require APPROOT . '/views/inc/admin_navbar.php'; ?>
-<?php endif; ?>
-
+<?php require APPROOT . '/views/inc/admin_navbar.php'; ?> <!-- admin nav -->
 <?php require APPROOT . '/views/inc/navbar.php'; ?>
 
 
@@ -20,5 +16,5 @@
 </div>
 
   
-<?php call_section($data['discount-btn'])?>
+<?php call_section()?>
 <?php require APPROOT . '/views/inc/footer.php';?>

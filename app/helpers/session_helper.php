@@ -4,7 +4,7 @@ session_start();
   // Flash message helper
   // EXAMPLE in controller Users - flash('register_success', 'You are now registered');
   // DISPLAY IN VIEW - echo flash('register_success');
-  function flash($name = '', $message = '', $class = 'alert alert-success'){
+  function flash($name = '', $message = '', $class = 'alert alert-success  px-2 py-1'){
     if(!empty($name)){
            // If  you are creating a new flash
       if(!empty($message) && empty($_SESSION[$name])){

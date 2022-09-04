@@ -17,32 +17,40 @@
 
   <div class="form-group">
     <label for="description_1">Room description 1</label>
-    <textarea name="description_1" rows="3" class="form-control form-control-lg <?php echo (!empty($data['description_1_err'])) ? 'is-invalid' : ''; ?>"  value=" <?php echo $data['description_1'] ?>"></textarea>
+    <textarea name="description_1" rows="3" class="form-control form-control-lg <?php echo (!empty($data['description_1_err'])) ? 'is-invalid' : ''; ?>"  ><?php echo $data['description_1'] ?></textarea>
     <span class="invalid-feedback"><?php echo $data['description_1_err']; ?></span>
     
   </div>  
 
   <div class="form-group">
     <label for="description_2">Room description 2</label>
-<textarea name="description_2" rows="3" class="form-control form-control-lg <?php echo (!empty($data['description_2_err'])) ? 'is-invalid' : ''; ?>"  value=" <?php echo $data['description_2'] ?>"></textarea>
+<textarea name="description_2" rows="3" class="form-control form-control-lg <?php echo (!empty($data['description_2_err'])) ? 'is-invalid' : ''; ?>"  > <?php echo $data['description_2'] ?></textarea>
 <span class="invalid-feedback"><?php echo $data['description_1_err']; ?></span>
   </div>
 
  
+
   <div class="form-group">
   <label for="image_big">Room Name</label>
-    <input type="file" name="image_big" class="form-control form-control-lg <?php echo (!empty($data['image_big_err'])) ? 'is-invalid' : ''; ?>"  value="">
+    <input type="file" id="imgInput" name="image_big" class="form-control form-control-lg <?php echo (!empty($data['image_big_err'])) ? 'is-invalid' : ''; ?>"  value="">
     <span class="invalid-feedback"><?php echo $data['image_big_err']; ?></span>
 
   </div>
- 
-  <div class="form-group">
-    <label for="image_thumbnail">thumbnail Image</label>
-    <input type="file" class="form-control-file" name="image_thumbnail">
+
+  <div>
+  <img id="blah" src="" alt="">
   </div>
 
-            <div class="d-flex justify-content-end" >
-              <input type="submit" value="submit" class="btn btn-success ">
-            </div>
+
+
+
+  <div class="d-flex justify-content-end" >
+  <input type="submit" value="submit" class="btn btn-success ">
+  </div> 
+
+
+
 </form>
   </div>
+  <?php require APPROOT . '/views/inc/footer.php'; ?>
+

@@ -1,44 +1,57 @@
 
 
 <?php require APPROOT . '/views/inc/header.php';?>
+<?php require APPROOT . '/views/inc/admin_navbar.php'; ?>
 
-  <?php require APPROOT . '/views/inc/admin_navbar.php'; ?>
-
-  <div class="container jumbotron mt-3 mb-3 pt-3 pb-4">
-  <h1 class="display-4"><?php echo $data['title'] ?></h1>
-
-  <p class="lead"><?php echo $data['description'] ?></p>
-  <p class="lead">
-    <a class="btn btn-primary btn-lg" href="<?php echo URLROOT;?>/hotelroom/index" role="button">view avida rooms</a>
-  </p>
- 
-  
-  <hr class="my-4">
-  <div class="d-flex justify-content-between align-items-center">
- 
-
-  <div class="bg-secondary py-1 px-2 radius-3 "><span style="font-size: 16px; font-weight: bold;">Total No. of added rooms: </span> <strong><?php echo $data['added-rooms']?> </strong> 
-</div>
-
-  <a href="<?php echo URLROOT;?>/admin/add_room" class="btn btn-dark btn-md">Add Rooms</a>
-
-
+<div class="container col-md-8 mx-auto my-3">
+      <div class="list-group ">
+      <div class="bg-dark p-4 text-white">
+      <h4><?php echo $data['title'] ?></h4>
+          <hr class="my-4 bg-white p-0 m-0">
+      <div class="d-flex justify-content-between align-items-center">
+        <span>Total No. of added rooms: <b><?php echo $data['added-rooms']?> </b> </span> 
+        <a href="<?php echo URLROOT;?>/admin/add_room" class="btn btn-success btn-md">Add Rooms</a>
+      </div>
+      </div>
   </div>
-
-</div>
-<div class="container mb-5">
+<div class="container px-0 mb-5">
 <ul class="list-group">
 <?php foreach($data['rooms'] as  $rooms): ?>
-    <li class="list-group-item "><h3><?php echo $rooms->room_name ?> </h3><a href="<?php echo URLROOT;?>/hotelroom/room?id=<?php  echo $rooms->id  ?>" class="btn btn-sm btn-primary m-0 py-0 px-1" style="font-size :12px;" > view room </a> 
-    <a href="<?php echo URLROOT;?>/hotelroom/room?id=<?php  echo $rooms->id  ?>" class="btn btn-sm btn-secondary m-0 py-0 px-1 " style="font-size :12px;" >Edit Room </a><span class="float-right"><strong> Date Created:</strong> <?php echo $rooms->date ?></span>
   
+  <li class="list-group-item list-group-item-action flex-column align-items-start  mt-1"><h3><a href=" <?php echo URLROOT;?>/pages/each_room?id=<?php  echo $rooms->id  ?>" class="text-dark "><?php echo $rooms->room_name ?> </a></h3>
+    <div class="d-flex justify-content-between">
+      <div class="d-flex align-items-baseline">
+          <div class="mr-2">
+          <a target="blank" href="<?php echo URLROOT;?>/pages/room?id=<?php  echo $rooms->id  ?>" class="btn btn-sm btn-primary m-0 py-0 px-1" style="font-size :12px;" > view room </a> 
 
+          </div>
+
+          <div class="mr-2">
+          <a href="<?php echo URLROOT;?>/admin/edit_room?id=<?php  echo $rooms->id  ?>" class="btn btn-sm btn-secondary m-0 py-0 px-1 " style="font-size :12px;" >Edit Room </a>
+
+          </div>
+          <div>
+          <form action="<?php echo URLROOT;?>/admin/delete?id=<?php  echo $rooms->id  ?>"  method="post">
+          <input class="btn btn-sm btn-danger py-0" style="font-size :12px;" type="submit" value="Delete">
+          </form>
+      </div>
+    </div>
+
+    <div class="d-flex ">
+      <strong class="mr-2"> Date Created:  </strong>  <?php echo $rooms->date ?>
+    </div>
+    </div>
+    </li>
+
+
+   
 <?php endforeach; ?>
 </ul> 
 </div>
+</div>
 
 
-
+<?php require APPROOT . '/views/inc/footer.php'; ?>
  
 
 

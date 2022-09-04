@@ -1,8 +1,8 @@
 <?php
 
-  function discount_button($param){
+  function discount_button(){
     
-    echo '<div class="discount-btn-container"> <a href= " '. URLROOT. '/hotelroom/index"><button type="button" class="btn btn-md btn-danger mb-2"> '.$param.'  </button> </a> </div>';
+    echo '<div class="discount-btn-container"> <a href= " '. URLROOT. '/hotelroom/index"><button type="button" class="btn btn-md btn-danger mb-2">  Book Now!! </button> </a> </div>';
   }
 
   function book_button(){

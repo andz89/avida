@@ -1,9 +1,5 @@
-<?php require APPROOT . '/views/inc/header.php';?>
-
-<?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin'): ?>
-<?php require APPROOT . '/views/inc/admin_navbar.php'; ?>
-<?php endif; ?>
-
+<?php require APPROOT . '/views/inc/header.php';?>  
+<?php require APPROOT . '/views/inc/admin_navbar.php'; ?> <!-- admin nav -->
 <?php require APPROOT . '/views/inc/navbar.php'; ?>
 
 
@@ -12,7 +8,7 @@
   <div class="alert alert-primary m-0 d-flex">
      
         <h2 class="mr-4">Hello <?php echo $_SESSION['user_role']; ?> welcome back!</h2>  
-        <div><?php discount_button($data['discount-btn']); ?></div> 
+        <div><?php discount_button(); ?></div> 
   </div> 
 <?php else : ?>
   
@@ -26,5 +22,5 @@
     <h2 class="homepage-title"><?php echo $data['title']; ?><br></h2>
     <p class="lead"><?php echo $data['description']; ?></p>
 </div>
-<?php call_section($data['discount-btn'])?>
+<?php call_section()?>
 <?php require APPROOT . '/views/inc/footer.php';?>

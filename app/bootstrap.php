@@ -7,6 +7,10 @@ require_once 'helpers/session_helper.php';
 require_once 'helpers/button_helper.php';
 require_once 'helpers/section_helper.php';
 require_once 'helpers/room_template.php';
+require_once 'helpers/role.php';
+require_once 'helpers/script.php';
+
+
 
 
 
@@ -15,3 +19,4 @@ spl_autoload_register(function($className){
 
     require_once 'libraries/' . $className .'.php';
 });
+?>

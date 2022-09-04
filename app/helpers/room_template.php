@@ -4,9 +4,9 @@ function  room_template($id, $large_image, $room_name, $description_1,$descripti
         echo '
         <div class="card each_rooms ">
           <div class="card-body rooms-content">
-               
+          <div class="image-container">
           <img class="card-img-top" src =" '. $large_image .'"  alt="Card image cap">
-                
+          </div>  
             
             <div>
             <div class="btn-book">

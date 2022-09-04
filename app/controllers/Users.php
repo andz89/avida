@@ -5,12 +5,16 @@ class Users extends Controller{
       $this->userModel = $this->model('User');
    
     }
-
-    public function register(){
+    public function index(){
     
+     redirect('index');
+  }
+    public function register(){
+      
     
         // Check for POST
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            user_role('users/register');
           // Process form
           // sanitize post data
           $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -21,13 +25,14 @@ class Users extends Controller{
             'password' => trim($_POST['password']),
             'confirm_password' => trim($_POST['confirm_password']),
             'role' => trim($_POST['role']),
+            'contanct_number' => trim($_POST['contact_number']),
 
             'name_err' => '',
             'email_err' => '',
             'password_err' => '',
             'confirm_password_err' => ''
           ];
-          echo $data;
+    
           // validate email
           if(empty($data['email'])){
             $data['email_err'] = 'Pleae enter email';
@@ -42,7 +47,10 @@ class Users extends Controller{
         if(empty($data['name'])){
           $data['name_err'] = 'Pleae enter name';
         }
-      
+        //validate number
+        if(empty($data['contact_number'])){
+          $data['contact_number_err'] = 'Pleae enter contact number';
+        }
         // Validate Password
         if(empty($data['password'])){
           $data['password_err'] = 'Pleae enter password';
@@ -92,7 +100,8 @@ class Users extends Controller{
             'email_err' => '',
             'password_err' => '',
             'confirm_password_err' => '',
-            'role' => ''
+            'role' => '',
+            'contact_number' =>'',
 
           ];
   
@@ -107,6 +116,8 @@ class Users extends Controller{
       public function login(){
         // Check for POST
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
+          user_role('users/login');
+
           // Process form
           // Sanitize POST data
         $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -177,6 +188,12 @@ class Users extends Controller{
         $_SESSION['user_email'] = $user->email;
         $_SESSION['user_name'] = $user->name;
         $_SESSION['user_role'] = $user->role;
+        $_SESSION['user_created'] = $user->date;
+        $_SESSION['user_contact_number'] = $user->contact_number;
+
+
+       
+
         redirect('index');
       }
 
@@ -191,6 +208,10 @@ class Users extends Controller{
       unset($_SESSION['user_email']);
       unset($_SESSION['user_name']);
       unset($_SESSION['user_role']);
+      unset($_SESSION['user_contact_number']);
+
+   
+
       session_destroy();
 
      
@@ -228,7 +249,7 @@ class Users extends Controller{
           
         }else{
           //No user found
-          $data['email_err']= 'No user found sad';
+          $data['email_err']= 'No user found';
         }
 
         // Make sure errors are empty
@@ -263,6 +284,20 @@ class Users extends Controller{
         $this->view('users/login_admin', $data);
       }
     }
+    public function booking(){
+       $booking =  $this->userModel->getAllBookings_as_user($_SESSION['user_id']);
+      $data =  ['booking'=> $booking,
+          ];   
+  
+      $this->view('users/booking', $data);
+  
+     }
+     public function account(){
 
+     $data =  [ ];   
  
+     $this->view('users/account');
+ 
+    }
+  
 }

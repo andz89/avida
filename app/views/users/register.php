@@ -1,10 +1,8 @@
 <?php require APPROOT . '/views/inc/header.php';?>  
-
-<?php if(isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'admin'): ?>
-<?php require APPROOT . '/views/inc/admin_navbar.php'; ?>
-<?php endif; ?>
-
+<?php require APPROOT . '/views/inc/admin_navbar.php'; ?> <!-- admin nav -->
 <?php require APPROOT . '/views/inc/navbar.php'; ?>
+
+
  
     <div class="col-md-4 mx-auto my-5 ">
       <div class="card card-body bg-light ">
@@ -21,7 +19,11 @@
             <input type="email" name="email" class="form-control form-control-lg <?php echo (!empty($data['email_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['email']; ?>">
             <span class="invalid-feedback"><?php echo $data['email_err']; ?></span>
           </div>
-      
+          <div class="form-group">
+            <label for="contact_number">Contact Number: <sup>*</sup></label>
+            <input type="tel" name="contact_number" class="form-control form-control-lg <?php echo (!empty($data['contact_number_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['contact_number']; ?>">
+            <span class="invalid-feedback"><?php echo $data['contact_number_err']; ?></span>
+          </div>
           <input type="hidden" name="role" value="user">
       
           
