@@ -213,19 +213,19 @@ class Admin extends Controller{
               }
               $room =  $this->roomModel->findRoomByRoom($_GET['id']);
             
-              if($room->id){
-                $data =  [
-                  'id'=> $room->id,
-                  'room_name' =>$room->room_name,
-                  'description_1' => $room->description_1,
-                  'description_2' =>  $room->description_2,
-                  'large_image' => $room->large_image
-                  
-                ]; 
-              }else{
-                  redirect('admin/room');
-              }
-            
+          if($room->id){
+          $data =  [
+          'id'=> $room->id,
+          'room_name' =>$room->room_name,
+          'description_1' => $room->description_1,
+          'description_2' =>  $room->description_2,
+          'large_image' => $room->large_image
+
+          ]; 
+          }else{
+          redirect('admin/room');
+          }
+
              
    
             $this->view('admin/edit_room', $data);

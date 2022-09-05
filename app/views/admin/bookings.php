@@ -44,8 +44,8 @@
             <span><b>Number of Children: </b>  <?php echo $booking->number_children?></span>
             <span><b> Date of Arrival:</b> <?php echo $booking->arrival_date ?></span>
             <span><b> Date of Departure: </b> <?php echo $booking->departure_date ?></span>
-            <form action="admin/approve_booking" method="post">
-              <input type="sumit" class="btn btn-sm btn-success float-right" value=" Approve Booking">
+            <form action="admin/booking" method="post">
+              <input type="submit" class="btn btn-sm btn-success float-right" value=" Approve Booking">
             </form>
             </div>
          
