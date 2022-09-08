@@ -265,7 +265,7 @@ class Users extends Controller{
            $data['password_err'] = 'Password incorrect';
       
 
-           $this->view('admin/index', $data);
+           $this->view('users/login_admin', $data);
          }
         }else{
           // Load view with errors

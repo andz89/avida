@@ -39,6 +39,6 @@
   </div>
 </div>
 
-<?php call_section()?>
+
 <?php require APPROOT . '/views/inc/footer.php';?>
 

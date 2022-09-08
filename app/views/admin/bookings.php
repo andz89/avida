@@ -14,7 +14,9 @@
 
             <div class="list-group-item  flex-column align-items-start  mt-1">
               <div  class="d-flex w-100 justify-content-between">
-              <span >Booking Status: <span class="btn btn-warning btn-sm py-0 my-1" ><b><?php echo $booking->booking_status?></b> </span></span><br>
+
+              <span >Booking Status: <span class="btn <?php echo ($booking->booking_status == 'Approved')? 'btn-success' : 'btn-warning'?>  btn-sm py-0 my-1" ><b><?php echo $booking->booking_status?></b> </span></span><br> 
+
               <span class="btn btn-primary btn-sm" data-toggle="collapse" href="#<?php echo $booking->id?>" role="button" aria-expanded="false" aria-controls="<?php echo $booking->id?>">
              View
             </span>
@@ -44,8 +46,16 @@
             <span><b>Number of Children: </b>  <?php echo $booking->number_children?></span>
             <span><b> Date of Arrival:</b> <?php echo $booking->arrival_date ?></span>
             <span><b> Date of Departure: </b> <?php echo $booking->departure_date ?></span>
-            <form action="admin/booking" method="post">
-              <input type="submit" class="btn btn-sm btn-success float-right" value=" Approve Booking">
+         
+      
+            <form action="<?php echo URLROOT; ?>/admin/approve_book?id=<?php echo $booking->id ?>" method="post">
+            <div class="d-flex justify-content-end align-items-center ">
+           
+           <div class="float-right mr-3">  <?php echo ($booking->booking_status == 'Approved')?  $booking->date_approved : ''?> </div>
+           <input type="submit" class="btn btn-sm btn-success float-right"<?php echo ($booking->booking_status == 'Approved')? 'disabled': ''?>  value="<?php echo ($booking->booking_status == 'Approved')? 'Approved' : 'Approve Booking'?>">
+            </div>
+         
+
             </form>
             </div>
          
@@ -72,4 +82,5 @@
 </div>
 </div>
 
-<?php require APPROOT . '/views/inc/footer.php'; ?>
+<?php require APPROOT . '/views/inc/script_bootstrap.php';?>
+

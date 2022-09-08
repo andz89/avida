@@ -1,10 +1,16 @@
 /* nav bar bg-color*/
 .blue-bg{ 
-    background-color: #113c79;
+    background-color: #256D85;
+    align-items: center;
 }
 .logo{
-  margin-top: 6px;
 
+  font-family: 'Great Vibes', cursive;
+;
+  h3{
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+  }
 }
 
 .navbar-toggler-icon{

@@ -9,7 +9,7 @@ class Admin extends Controller{
 
       $this->userCount = $this->userModel->getCountUsers();
       $this->roomCount = $this->roomModel->getCountRooms();
-      $this->bookCount = $this->roomModel->getCountBookings();
+      $this->bookCount = $this->userModel->getCountBookings();
  
 
      
@@ -96,7 +96,7 @@ class Admin extends Controller{
           $fileDestination =   'images/'.$fileNewName;  
           move_uploaded_file($fileTempName, $fileDestination);
           $data['large_image'] = URLROOT . '/'. 'images/'.$fileNewName;
-          
+          $data['image_filename'] = $fileNewName;
           if($this->roomModel->add_room($data)){
               flash('room added', 'Room added');
               redirect('admin/rooms');
@@ -236,8 +236,11 @@ class Admin extends Controller{
 
               public function delete(){
                 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                
+                  $image_path =  $this->roomModel->getroom($_GET['id']);
+                  print_r($image_path->image_filename);
+                  // URLROOT . '/'. 'images/'.$fileNewName
                   if($this->roomModel->delete_room($_GET['id'])){
+                    unlink(URLROOT . '/'. 'images/ ' .$image_path->image_filename);
                     redirect('admin/rooms');
                   }
                 }
@@ -307,5 +310,26 @@ class Admin extends Controller{
             
 
               }
-
+              
+              public function approve_book(){
+     
+                if($_SERVER['REQUEST_METHOD'] == 'POST'){
+                 $booking = $this->userModel->getBooking($_GET['id']);
+            
+        
+                $data = [
+                  'id' => $booking->id,
+                   'booking_status'=>'Approved',
+                   'date_approved'=> date("l jS \of F Y h:i:s A")
+                ];      
+         
+                 
+                    if($this->userModel->approve_booking($data)){
+                    
+                      redirect('admin/bookings');
+                    }
+         
+                 
+                }
+              }
 }

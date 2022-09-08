@@ -7,8 +7,8 @@
 
 
 
-    <div class="col-md-6 mx-auto my-5 ">
-      <div class="card card-body bg-light ">
+    <div class="col-md-6 mx-auto my-5 " style="height: 400px; ">
+      <div class="card card-body" style="background-color: #f8efda;margin-top:100px">
         <h2>Your Account</h2>
        
         <div class="mb-1"><b>User Name:</b>  <?php echo $_SESSION['user_name'] ?></div>

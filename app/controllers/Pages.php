@@ -68,6 +68,7 @@ class Pages extends Controller{
        
           // Check for POST
           check_id($_GET['id'], 'index');#room id
+      
           $rooms =  $this->roomModel->findRoomByRoom($_GET['id']);
 
           if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -78,7 +79,7 @@ class Pages extends Controller{
                     'user_id' =>$_SESSION['user_id'],
                      'user_name'=> $_SESSION['user_name'],
                      'user_email'=> $_SESSION['user_email'],
-                     'user_email'=> $_SESSION['contact_number'],
+                     'user_number'=> $_SESSION['user_contact_number'],
 
                      'room_id' =>$rooms->id,
                      'room_name' => $rooms->room_name,
@@ -87,19 +88,38 @@ class Pages extends Controller{
                     'arrival_date' => trim($_POST['arrival_date']),
                     'departure_date' => trim($_POST['departure_date']),
                     'booking_status' =>'pending',
+                    'user_email_err'=> ''
 
                 ]; 
-                if($this->roomModel->insert_booking($data)){
-                  
-                    redirect('pages/rooms');
-                  } else {
-                    die('Something went wrong');
-                  }
            
+                                // Validate Email
+                    if(empty($data['number_adults'])){
+                        $data['number_adults_err'] = 'Pleae enter number_adults';
+                    }
+
+                 
+                    if(empty($data['number_adults_err']) ){
+                        // Validated
+                        if($this->roomModel->insert_booking($data)){
+                  
+                            redirect('pages/rooms');
+                          } else {
+           
+        
+                            die('Something went wrong');
+                          }
+                       }else{
+                        $this->view('pages/booking', $data);
+
+                       }
+              
+                  
+                
 
           }else{
-            user_role('index');
+          
             check_id($_GET['id'], 'index');#room id
+            user_role('users/login');
             $rooms =  $this->roomModel->findRoomByRoom($_GET['id']);
             $data =  ['user_id' =>$_SESSION['user_id'],
                      'user_name'=> $_SESSION['user_name'],

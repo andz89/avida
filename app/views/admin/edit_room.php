@@ -3,7 +3,7 @@
   <?php require APPROOT . '/views/inc/admin_navbar.php'; ?>
 
   <div class="container my-5">
-    <a  href="<?php echo URLROOT;?>/admin/rooms" class="btn btn-md btn-primary mb-3"><-Back</a>
+    
     <h3>Edit room in Avida Hotel</h3>
     <form action="<?php echo URLROOT; ?>/admin/edit_room?id=<?php echo $data['id'] ?> "  method="post" enctype="multipart/form-data">
   <div class="form-group">
@@ -55,5 +55,6 @@
 
   <?php echo script_edit_rooms_admin(); ?>
   </script>
-  <?php require APPROOT . '/views/inc/footer.php'; ?>
+<?php require APPROOT . '/views/inc/script_bootstrap.php';?>
+
 

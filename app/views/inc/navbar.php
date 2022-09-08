@@ -1,6 +1,9 @@
 <nav class="">
-<div class='blue-bg navbar navbar-expand-lg navbar-dark  mb-0 '>
-     <a class="navbar-brand text-white logo" href="<?php echo URLROOT; ?>"> <h3><?php echo SITENAME; ?></h3></a>
+<div class='blue-bg navbar navbar-expand-lg navbar-dark py-0 mb-0 '>
+  <div class="d-flex justify-content-center allign-text-center">
+  <a class="navbar-brand text-white logo mt-3" href="<?php echo URLROOT; ?>"> <h3><?php echo SITENAME; ?></h3></a>
+
+  </div>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -38,10 +41,10 @@
 
     
             <li class="nav-item ">
-            <a class="nav-link text-white" href="<?php echo URLROOT; ?>/users/register">Register</a>
+            <a class="nav-link text-dark" href="<?php echo URLROOT; ?>/users/register">Register</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link text-white" href="<?php echo URLROOT; ?>/users/login">Login</a>
+            <a class="nav-link text-dark" href="<?php echo URLROOT; ?>/users/login">Login</a>
             </li>
         
         <?php endif; ?>

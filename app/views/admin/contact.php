@@ -42,4 +42,5 @@
   <?php echo alert_flash(); ?>
 
   </script>
-  <?php require APPROOT . '/views/inc/footer.php'; ?>
+<?php require APPROOT . '/views/inc/script_bootstrap.php';?>
+

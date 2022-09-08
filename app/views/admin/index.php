@@ -29,7 +29,8 @@
 </div>
 
 
-<?php require APPROOT . '/views/inc/footer.php'; ?>
+
+<?php require APPROOT . '/views/inc/script_bootstrap.php';?>
 
 
 

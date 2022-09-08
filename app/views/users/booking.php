@@ -6,16 +6,16 @@
 <?php require APPROOT . '/views/inc/navbar.php'; ?>
 
 
-        <div class="container booking-page">
+        <div class="container booking-page my-5">
         <ul class="list-group  m-5 ">
-        <div class="booking-header bg-secondary">
-        <h4> Booking of <?php echo $_SESSION['user_name'] ?></h4> 
+        <div class="booking-header "style="background-color:#f8efda" >
+        <h4 class=" text-dark"> Your Booking</h4> 
         
         </div>
         <?php foreach($data['booking'] as  $bookings): ?>
        
               <li class="list-group-item">
-            <span class="btn btn-info btn-sm">Status: <?php echo $bookings->booking_status ?></span><br>
+            <span class="btn  btn-sm text-white"style="background-color:#256D85"> Status: <b><?php echo $bookings->booking_status ?></b></span><br>
             
             <span><b> Booking ID:</b>  <?php echo $bookings->booking_id ?></span><br>
             <span><b> Room Type:</b>  <?php echo $bookings->room_name ?></span><br>

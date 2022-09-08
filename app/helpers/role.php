@@ -2,15 +2,15 @@
 <?php
 
 function user_role($page){
-  if(isset($_SESSION['user_role'])){
-    if(isLoggedIn() && $_SESSION['user_role'] == 'user'){
-      return true;
-    }else{
-      redirect($page);
-      return false;
-    }
+
+  if(isLoggedIn() && isset($_SESSION['user_id']) && !$_SESSION['user_role'] == 'user'){
+    redirect($page);  
   }
-   
+  if(isset($_SESSION['user_id']) && $_SESSION['user_role'] == 'admin'){
+    redirect($page);  
+
+  }
+
 }
 function admin_role($page){
   if(isset($_SESSION['user_role'])){

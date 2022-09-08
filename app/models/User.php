@@ -137,6 +137,9 @@
           return $row;
          
         }
+
+ 
+
         public function update_contact($data){
     
           $this->db->query('UPDATE contact SET telephone = :telephone, email = :email, address = :address WHERE id = :id');
@@ -158,7 +161,41 @@
           }
          
         }
+        
+        public function getBooking($id){
+          $this->db->query('SELECT * FROM book WHERE id = :id');
+          $this->db->bind(':id', $id);
 
+          $row= $this->db->single();
+       
+         return $row;
+
+        }
+
+    
+        public function approve_booking($data){
+       
+          $this->db->query('UPDATE book SET booking_status = :booking_status, date_approved = :date_approved WHERE id = :id');
+          // Bind values
+          $this->db->bind(':id', $data['id']);
+    
+          $this->db->bind(':booking_status', $data['booking_status']);
+          $this->db->bind(':date_approved', $data['date_approved']);
+
+
+
+
+          // $this->db->bind(':image_thumbnail', $data['image_thumbnail']);
+    
+    
+          // Execute
+          if($this->db->execute()){
+            return true;
+          } else {
+            return false;
+          }
+        }
+        
   } 
      
 
