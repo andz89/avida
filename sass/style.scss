@@ -17,4 +17,18 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
+.flatpickr-calendar{
+    background-color: rgb(171, 204, 247);
+    color: aliceblue;
+    user-select: none;
 
+}
+.flatpickr-day.flatpickr-disabled, .flatpickr-day.flatpickr-disabled:hover{
+ 
+    color: #333;
+    background-color: rgb(241, 218, 155);
+}
+
+.taken {
+    display: none;
+}

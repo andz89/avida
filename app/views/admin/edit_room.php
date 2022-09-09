@@ -29,11 +29,11 @@
     <span class="invalid-feedback"><?php echo $data['description_2_err']; ?></span>
 </div> 
   <div>
-  <img id="blah" src="<?php echo $data['large_image'] ?>" alt="">
+  <img id="blah" src="<?php echo $data['image_path'] ?>" alt="">
 </div>
 
 <!-- if there is no new image uploaded -->
-<input type="hidden" name="large_image" value="<?php echo $data['large_image'] ?>">
+<input type="hidden" name="image_path" value="<?php echo $data['image_path'] ?>">
 
   <div class="form-group mt-3">
   <label for="imgInput" class="btn btn-secondary">Change Image</label> <span  id="file-name" style="font-size:20px;"></span>

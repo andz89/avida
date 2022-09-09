@@ -58,13 +58,14 @@ class Pages extends Controller{
         $data = [
             'id'=> $rooms->id,
             'room_name'=> $rooms->room_name,
-            'large_image'=> $rooms->large_image,
+            'image_path'=> $rooms->image_path,
             'description_1'=> $rooms->description_1,
             'description_2'=> $rooms->description_2,
         ];
         $this->view('pages/room', $data);
     }
     public function booking(){
+        // $taken = array('2022-09-02','2022-09-03','2022-09-04');
        
           // Check for POST
           check_id($_GET['id'], 'index');#room id
@@ -121,11 +122,28 @@ class Pages extends Controller{
             check_id($_GET['id'], 'index');#room id
             user_role('users/login');
             $rooms =  $this->roomModel->findRoomByRoom($_GET['id']);
+            $date_taken = $this->userModel->getTakenDates($rooms->room_name);
+             
+            $dat = [];
+            foreach($date_taken as $li){
+                array_push($dat,$li->arrival_date);
+            }
+            $date_disabled = [];
+             foreach(array_count_values($dat) as $item => $key){
+
+                if( $key >= 2){
+                     array_push($date_disabled,$item);
+                }
+                
+                }
+        
+           
             $data =  ['user_id' =>$_SESSION['user_id'],
                      'user_name'=> $_SESSION['user_name'],
                      'user_email'=> $_SESSION['user_email'],
                      'room_id' =>$rooms->id,
-                     'room_name' => $rooms->room_name,
+                     'room_name' => $rooms->room_name, 
+                     'date_disabled' => $date_disabled,
                 ];   
             $this->view('pages/booking', $data);
           }

@@ -14,7 +14,7 @@
   <?php foreach($data['rooms'] as  $rooms): ?>
   <div class="mt-3 ">
   <div class="card  py-3 room-a d-flex flex-row" >
-        <a href="<?php echo URLROOT; ?>/pages/room?id=<?php echo $rooms->id ?>"> <img class="card-img-top" src="<?php echo $rooms->large_image ?> "  alt="Card image cap"></a>
+        <a href="<?php echo URLROOT; ?>/pages/room?id=<?php echo $rooms->id ?>"> <img class="card-img-top" src="<?php echo $rooms->image_path ?> "  alt="Card image cap"></a>
         <div class="card-body">
             <h4 class="room-title text-left"><?php echo $rooms->room_name ?></h4>
         <p class="card-text text-left"><?php echo $rooms->description_1 ?></p>

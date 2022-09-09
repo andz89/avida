@@ -31,8 +31,8 @@
 
           </div>
           <div>
-          <form action="<?php echo URLROOT;?>/admin/delete?id=<?php  echo $rooms->id  ?>"  method="post">
-
+          <form action="<?php echo URLROOT;?>/admin/delete?id=<?php  echo $rooms->id  ?>"  method="post" enctype="multipart/form-data">
+         
           <input class="btn btn-sm btn-danger py-0" style="font-size :12px;" type="submit" value="Delete">
           </form>
       </div>

@@ -118,7 +118,16 @@
           return $this->db->rowCount();
 
         }
+        public function getTakenDates($data){
+          // SELECT COL_NAME AS 'Column_Name', TAB_NAME AS 'Table_Name'
+          $this->db->query('SELECT  arrival_date FROM  book WHERE room_name = :room_name');
+          $this->db->bind(':room_name', $data);
 
+          $results = $this->db->resultSet();
+          return $results;
+
+    
+        }
         public function getCountUsers(){
     
           $this->db->query('SELECT * FROM users');

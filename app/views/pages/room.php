@@ -2,9 +2,8 @@
 <?php require APPROOT . '/views/inc/admin_navbar.php'; ?> <!-- admin nav -->
 <?php require APPROOT . '/views/inc/navbar.php'; ?>
 <div class="d-flex justify-content-start m-5 ">
- <div  style="margin-right:20px; width:1400px">
- <img  src =" <?php echo $data['large_image'] ?>" style="margin-right:20px" width="100%" alt="Card image cap">
-
+ <div  style="margin-right:20px; width:280rem">
+ <img  src ="<?php echo $data['image_path'] ?>" style="margin-right:20px" width="100%" alt="Card image cap">
  </div>
   
         

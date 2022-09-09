@@ -62,7 +62,7 @@ class Admin extends Controller{
             'description_1' => trim($_POST['description_1']),
             'description_2' => trim($_POST['description_2']),
             // 'image_thumbnail' => trim($_POST['image_thumbnail']),
-            'large_image' =>'',
+            'image_path' =>'',
           
             // 'image_thumbnail' => trim($_POST['image_thumbnail']),
 
@@ -95,7 +95,7 @@ class Admin extends Controller{
           $fileNewName = uniqid('',true)."." .$fileActualExt;
           $fileDestination =   'images/'.$fileNewName;  
           move_uploaded_file($fileTempName, $fileDestination);
-          $data['large_image'] = URLROOT . '/'. 'images/'.$fileNewName;
+          $data['image_path'] =URLROOT . '/'.'images/'.$fileNewName;
           $data['image_filename'] = $fileNewName;
           if($this->roomModel->add_room($data)){
               flash('room added', 'Room added');
@@ -135,11 +135,11 @@ class Admin extends Controller{
                 $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
               
               
-                $fileName = $_FILES['image_big']['name'];
-                $fileTempName = $_FILES['image_big']['tmp_name'];
+                $fileName = $_FILES['image_path']['name'];
+                $fileTempName = $_FILES['image_path']['tmp_name'];
                   print_r($fileTempName);
-                $fileType = $_FILES['image_big']['type'];
-                $fileError = $_FILES['image_big']['error'];
+                $fileType = $_FILES['image_path']['type'];
+                $fileError = $_FILES['image_path']['error'];
   
     
                 $fileExt = explode('.',$fileName);
@@ -151,7 +151,7 @@ class Admin extends Controller{
                 'room_name' => trim($_POST['room_name']),
               'description_1' => trim($_POST['description_1']),
               'description_2' => trim($_POST['description_2']),
-              'large_image' =>trim($_POST['large_image']),
+              'image_path' =>trim($_POST['image_path']),
               'room_name_err' => '',
               'description_1_err'=> '',
               'description_2_err'=> '',
@@ -188,8 +188,8 @@ class Admin extends Controller{
               $fileNewName = uniqid('',true)."." .$fileActualExt;
               $fileDestination =   'images/'.$fileNewName;
               move_uploaded_file($fileTempName, $fileDestination);
-              $data['large_image'] = URLROOT . '/'. 'images/'.$fileNewName;
-
+              $data['image_path'] = URLROOT . '/'. 'images/'.$fileNewName;
+            
             }
             
             if($this->roomModel->update_room($data)){
@@ -219,7 +219,7 @@ class Admin extends Controller{
           'room_name' =>$room->room_name,
           'description_1' => $room->description_1,
           'description_2' =>  $room->description_2,
-          'large_image' => $room->large_image
+          'image_path' => $room->image_path
 
           ]; 
           }else{
@@ -237,10 +237,21 @@ class Admin extends Controller{
               public function delete(){
                 if($_SERVER['REQUEST_METHOD'] == 'POST'){
                   $image_path =  $this->roomModel->getroom($_GET['id']);
-                  print_r($image_path->image_filename);
+                  $filename = 'images/'. $image_path->image_filename;
+                  // print_r($filename);
                   // URLROOT . '/'. 'images/'.$fileNewName
+                  // return false;
+                  if (file_exists($filename)) {
+                    unlink($filename);
+
+                  }else{
+                    print_r($filename);
+                    return false;
+                  }
+                  
+
                   if($this->roomModel->delete_room($_GET['id'])){
-                    unlink(URLROOT . '/'. 'images/ ' .$image_path->image_filename);
+                  
                     redirect('admin/rooms');
                   }
                 }

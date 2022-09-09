@@ -11,4 +11,4 @@ define('URLROOT', 'http://localhost/avida');
 
 //site name
 
-define('SITENAME', 'Avida hotel');
+define('SITENAME', 'Magpopungko hotel');
