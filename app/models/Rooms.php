@@ -115,7 +115,7 @@
    
     public function insert_booking($data){
     
-      $this->db->query('INSERT INTO book (booking_id, user_id, user_name,user_email,room_id,room_name, number_adults,number_children,arrival_date,departure_date,booking_status) VALUES(:booking_id, :user_id, :user_name,:user_email, :room_id, :room_name,:number_adults,:number_children,:arrival_date,:departure_date,:booking_status)');
+      $this->db->query('INSERT INTO book (booking_id, user_id, user_name,user_email,room_id,room_name, number_adults,number_children,arrival_date,booking_status) VALUES(:booking_id, :user_id, :user_name,:user_email, :room_id, :room_name,:number_adults,:number_children,:arrival_date,:booking_status)');
       // Bind values
       $this->db->bind(':booking_id', $data['booking_id']);
       $this->db->bind(':user_id', $data['user_id']);
@@ -126,7 +126,6 @@
       $this->db->bind(':number_adults', $data['number_adults']);
       $this->db->bind(':number_children', $data['number_children']);
       $this->db->bind(':arrival_date', $data['arrival_date']);
-      $this->db->bind(':departure_date', $data['departure_date']);
       $this->db->bind(':booking_status', $data['booking_status']);
 
 
@@ -141,4 +140,32 @@
     }
 
  
+    // public function insert_dates_booking($data){
+      
+    //   $this->db->query('SELECT * FROM rooms WHERE room_name = :room_name');
+    //   $this->db->bind(':room_name', $data['room_name']);
+    //   $row = $this->db->single();
+     
+    //   if($row){
+        
+
+    //   }else{
+    //     $this->db->query('INSERT INTO date_booking (dates,room_name) VALUES(:dates,:room_name)');
+    //     // Bind values
+    //     $this->db->bind(':dates', $data['dates']);
+    //     $this->db->bind(':room_name', $data['room_name']);
+    //     // Execute
+    //     if($this->db->execute()){
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+
+    //   }
+     
+
+
+
+    
+    //  }
   }

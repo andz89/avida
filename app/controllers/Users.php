@@ -190,6 +190,8 @@ class Users extends Controller{
         $_SESSION['user_role'] = $user->role;
         $_SESSION['user_created'] = $user->date;
         $_SESSION['user_contact_number'] = $user->contact_number;
+        $_SESSION['user_password'] = $user->password;
+
 
 
        

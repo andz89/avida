@@ -15,7 +15,7 @@ class Pages extends Controller{
         $this->view('pages/index', $data);
 
     }
-   
+
   
 
     public function about(){
@@ -65,16 +65,17 @@ class Pages extends Controller{
         $this->view('pages/room', $data);
     }
     public function booking(){
-        // $taken = array('2022-09-02','2022-09-03','2022-09-04');
-       
+      $rooms =  $this->roomModel->findRoomByRoom($_GET['id']);
+      $date_taken = $this->userModel->getTakenDates($rooms->room_name);
+
+        
           // Check for POST
           check_id($_GET['id'], 'index');#room id
       
-          $rooms =  $this->roomModel->findRoomByRoom($_GET['id']);
+      
 
           if($_SERVER['REQUEST_METHOD'] == 'POST'){
             user_role('pages/booking');
-         
          
             $data =  ['booking_id'=> uniqid('', true),
                     'user_id' =>$_SESSION['user_id'],
@@ -87,23 +88,59 @@ class Pages extends Controller{
                      'number_adults' => trim($_POST['number_adults']),   
                      'number_children' =>  trim($_POST['number_children']),   
                     'arrival_date' => trim($_POST['arrival_date']),
-                    'departure_date' => trim($_POST['departure_date']),
+                  
                     'booking_status' =>'pending',
-                    'user_email_err'=> ''
-
+                    'user_email_err'=> '',
+                    'arrival_date_err' => '',
+                    'number_children_err' => ''
                 ]; 
-           
+            
+             
+          
+
                                 // Validate Email
                     if(empty($data['number_adults'])){
                         $data['number_adults_err'] = 'Pleae enter number_adults';
                     }
+                    if(empty($data['number_children'])){
+                      $data['number_children_err'] = 'Pleae enter children';
+                   }
+
+
+                   if($data['arrival_date'] == null){
+                    $data['arrival_date_err'] = 'Please select range date';
+                
 
                  
-                    if(empty($data['number_adults_err']) ){
+                   }
+
+                   $string_num = strlen($data['arrival_date']);
+
+                   if($string_num == 10){
+
+                    $data['arrival_date_err'] = 'Please select range date';
+
+                   }
+                   
+                  
+                  
+                   
+          
+                    
+                    
+
+                 
+                    if(empty($data['number_adults_err']) && empty($data['arrival_date_err']) ){
+                      $string  =  explode("to",$data['arrival_date']);
+                      $date_range = getBetweenDates($string[0], $string[1]);
+                      $data['arrival_date'] =  $date_range;
                         // Validated
                         if($this->roomModel->insert_booking($data)){
-                  
-                            redirect('pages/rooms');
+                      
+
+                                redirect('pages/rooms');
+                           
+                            
                           } else {
            
         
@@ -121,29 +158,19 @@ class Pages extends Controller{
           
             check_id($_GET['id'], 'index');#room id
             user_role('users/login');
-            $rooms =  $this->roomModel->findRoomByRoom($_GET['id']);
-            $date_taken = $this->userModel->getTakenDates($rooms->room_name);
-             
-            $dat = [];
-            foreach($date_taken as $li){
-                array_push($dat,$li->arrival_date);
-            }
-            $date_disabled = [];
-             foreach(array_count_values($dat) as $item => $key){
+      
+          
+            
+            $dates_disable =  disable_dates($date_taken);
 
-                if( $key >= 2){
-                     array_push($date_disabled,$item);
-                }
-                
-                }
-        
-           
             $data =  ['user_id' =>$_SESSION['user_id'],
                      'user_name'=> $_SESSION['user_name'],
                      'user_email'=> $_SESSION['user_email'],
                      'room_id' =>$rooms->id,
                      'room_name' => $rooms->room_name, 
-                     'date_disabled' => $date_disabled,
+                     'date_disabled' => $dates_disable,
+                     'number_adults'=> '',
+                     'number_children'=> ''
                 ];   
             $this->view('pages/booking', $data);
           }

@@ -9,7 +9,7 @@
         
             <div style="position:relative;"> 
             <div class="rooms-content mx-1">
-         <a href="<?php echo URLROOT;?> /pages/booking?id=<?php echo $data['id']?>"><button type="button" class="btn btn-md  mx-5 float-right text-white" style="background-color:#5F6F94">Book Room  </button></a> 
+         <a href="<?php echo URLROOT;?>/pages/booking?id=<?php echo $data['id']?>"><button type="button" class="btn btn-md  mx-5 float-right text-white" style="background-color:#5F6F94">Book Room  </button></a> 
         </div>  
                 <h2 class="room-title"><?php echo $data['room_name'] ?></h2>
                 <p class="lead"> <?php echo $data['description_1'] ?></p>

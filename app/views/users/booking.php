@@ -21,7 +21,7 @@
             <span><b> Room Type:</b>  <?php echo $bookings->room_name ?></span><br>
             <span><b>Number of Adults:  </b> <?php echo $bookings->number_adults?></span><br>
             <span><b>Number of Children: </b>  <?php echo $bookings->number_children?></span><br>
-            <span><b> Date of Arrival:</b> <?php echo $bookings->arrival_date ?></span><br>
+            <span><b> Date of Arrival:</b> <?php echo $bookings->arrival_date  ?></span><br>
             <span><b> Date of Departure: </b> <?php echo $bookings->departure_date ?></span><br>
 
             </li>

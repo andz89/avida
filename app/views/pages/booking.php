@@ -20,41 +20,35 @@
     
           <div class="form-group">
             <label for="number_adults">No. of Adults: <sup>*</sup></label>
-            <input type="number" name="number_adults" max="4" min="1" class="form-control form-control-lg <?php echo (!empty($data['number_adults_err'])) ? 'is-invalid' : ''; ?>" value="">
+            <input type="number" name="number_adults" max="4" min="1" class="form-control form-control-lg <?php echo (!empty($data['number_adults_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['number_adults']; ?>">
             <span class="invalid-feedback"><?php echo $data['number_adults_err']; ?></span>
           </div>
           <div class="form-group">
             <label for="number_children">No. of Children: <sup>*</sup></label>
-            <input type="number" name="number_children"  max="4" min="1" class="form-control form-control-lg <?php echo (!empty($data['number_children_err'])) ? 'is-invalid' : ''; ?>" value="">
+            <input type="number" name="number_children"  max="4" min="1" class="form-control form-control-lg <?php echo (!empty($data['number_children_err'])) ? 'is-invalid' : ''; ?>" value="<?php echo $data['number_children']; ?>">
             <span class="invalid-feedback"><?php echo $data['number_children_err']; ?></span>
           </div>
-          <!-- <div class="form-group">
-            <label for="arrival_date">Arrival Date: <sup>*</sup></label>
-            <input type="date" name="arrival_date" class="form-control form-control-lg <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>" value="">
-            <span class="invalid-feedback"><?php echo $data['name_err']; ?></span>
-          </div> -->
+      
          
             <!-- date calendar -->
         <div class="form-group">
-        <label for="arrival_date">Check in date: <sup>*</sup></label>
-        <input id="arrival" name="arrival_date"  class="form-control form-control-lg <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>" value=""placeholder="Check in date" >
-        <span class="invalid-feedback"><?php echo $data['name_err']; ?></span>
+        <label for="arrival_date">Select a range of dates using the range calendar.: <sup>*</sup></label>
+        <input id="arrival" name="arrival_date"  class="form-control form-control-lg <?php echo (!empty($data['arrival_date_err'])) ? 'is-invalid' : ''; ?>" value=""placeholder="Check in date" >
+        <span class="invalid-feedback"><?php echo $data['arrival_date_err']; ?></span>
         </div>
     
-    
-        <!-- style="display: none;" -->
-        <div class="taken" >    
-        <?php foreach($data['date_disabled'] as  $li):?>
-        <span class='taken'><?php echo  $li?></span>
-        <?php endforeach; ?>
-        </div>
 
-          <div id="departure-container" class="form-group">
-            <label for="departure_date">Check out date: <sup>*</sup></label>
-            <input type="date" id="departure" name="departure_date" class="form-control form-control-lg <?php echo (!empty($data['name_err'])) ? 'is-invalid' : ''; ?>" placeholder="Select Check out date">
-            <span class="invalid-feedback"><?php echo $data['name_err']; ?></span>
+        <div class="taken" >    
+    
+        <span ><?php echo $data['date_disabled']?></span>
+  
+        </div>
+          <div>
           </div>
-      
+     
+      <div id='test'>
+
+      </div>
             <div class="col">
               <input type="submit" value="Check out" class="btn btn-primary btn-block">
             </div>
@@ -65,8 +59,10 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script>
-    // document.querySelector('.taken').style.display = 'none';
+
+
     let taken = document.querySelector('.taken').innerHTML
+   
     let date =  new Date();
 
     flatpickr('#arrival', {
@@ -75,28 +71,18 @@
             return rdatedData.includes(date.toISOString().substring(0, 10));
         },date],
       dateFormat: 'Y-m-d',
-      minDate: "today"
+      minDate: "today",
+      mode:'range',
+      onClose: function(selectedDates, dateStr, instance) {
+        // let a = document.querySelector('#arrival').value;
+        // if(a.length == 10){
+        
+        //     document.querySelector('#arrival').value = ''
+        // }
+
+}       
     });
 
-
-  document.querySelector('#departure-container').style.display = 'none'
-    let arrival_date = document.querySelector('#arrival')
-   arrival_date.addEventListener('change', (e)=>{
-    document.querySelector('#departure').value = ''
-  document.querySelector('#departure-container').style.display = 'block'
-   
-        flatpickr('#departure', {
-      disable:[date,
-        {
-            from: date,
-            to: e.target.value,
-        }
-      ],
-      dateFormat: 'Y-m-d',
-      minDate: "today"
-    });
-
-   })
     </script>
 
 <?php require APPROOT . '/views/inc/footer.php'; ?>

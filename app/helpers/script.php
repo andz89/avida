@@ -46,3 +46,44 @@ function script_edit_rooms_admin(){
     ";
   }
 
+  function getBetweenDates($startDate, $endDate)
+  {
+
+
+      $rangArray = [];
+      $startDate = strtotime($startDate);
+      $endDate = strtotime($endDate);
+      for ($currentDate = $startDate; $currentDate <= $endDate; 
+                          $currentDate += (86400)) {
+          $date = date('Y-m-d', $currentDate);
+
+          $rangArray[] = $date;
+
+      }
+     
+
+      $new_string = [];
+      foreach( $rangArray as $date){
+      
+        $new_string[] = $date;
+      }
+     $range_dates =  join(" ",$new_string);
+      return $range_dates ;
+  }
+function disable_dates($array){
+  $data = [];
+  foreach($array as $li){
+
+  array_push($data,$li->arrival_date);
+  }
+  $i = implode(' ', $data);
+  $i = explode(' ', $i);
+  $new_array = array_count_values($i);
+  foreach($new_array as $li =>$key){
+  if($key  > 2){
+ return $li;
+  }
+  }
+
+
+}

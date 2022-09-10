@@ -1,3 +1,5 @@
+
+
 <?php require APPROOT . '/views/inc/header.php';?>  
 <?php require APPROOT . '/views/inc/admin_navbar.php'; ?> <!-- admin nav -->
 <?php require APPROOT . '/views/inc/navbar.php'; ?>
