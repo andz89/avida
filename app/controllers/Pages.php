@@ -72,8 +72,7 @@ class Pages extends Controller{
           // Check for POST
           check_id($_GET['id'], 'index');#room id
       
-      
-
+    
           if($_SERVER['REQUEST_METHOD'] == 'POST'){
             user_role('pages/booking');
          
@@ -95,8 +94,37 @@ class Pages extends Controller{
                     'number_children_err' => ''
                 ]; 
             
+                //check if room quatity is updated during changes of quantity
+         
+                $dates_disable =  disable_dates($date_taken,$rooms->number_of_rooms);
+                // $arr = [];
+                // foreach($dates_disable as $list){
+                //     array_push($arr, $list);
+                // }
+               
+              
+                $a  =  explode("to",$data['arrival_date']);
+                $b_range = getBetweenDates($a[0], $a[1]);
+                $b  =  explode(" ", $b_range);
+
              
+
+             
+                $result = array_merge($dates_disable, $b);
+             
+               
+                $new_array = array_count_values($result);
           
+              foreach($new_array as $li =>$key){
+              if($key  > 1){
+              
+                $data['arrival_date_err'] = 'soory! room limit is reached Please refresh the page!';
+           
+                $this->view('pages/booking', $data);
+                return false;
+              }
+              }
+
 
                                 // Validate Email
                     if(empty($data['number_adults'])){
@@ -123,12 +151,6 @@ class Pages extends Controller{
                    }
                    
                   
-                  
-                   
-          
-                    
-                    
-
                  
                     if(empty($data['number_adults_err']) && empty($data['arrival_date_err']) ){
                       $string  =  explode("to",$data['arrival_date']);
@@ -161,8 +183,8 @@ class Pages extends Controller{
       
           
             
-            $dates_disable =  disable_dates($date_taken);
-
+            $dates_disable =  disable_dates($date_taken,$rooms->number_of_rooms);
+        
             $data =  ['user_id' =>$_SESSION['user_id'],
                      'user_name'=> $_SESSION['user_name'],
                      'user_email'=> $_SESSION['user_email'],

@@ -39,8 +39,9 @@
     
 
         <div class="taken" >    
-    
-        <span ><?php echo $data['date_disabled']?></span>
+      <?php foreach($data['date_disabled'] as $list): ?>
+        <span ><?php echo $list?></span>
+        <?php endforeach; ?>
   
         </div>
           <div>
@@ -74,11 +75,11 @@
       minDate: "today",
       mode:'range',
       onClose: function(selectedDates, dateStr, instance) {
-        // let a = document.querySelector('#arrival').value;
-        // if(a.length == 10){
+        let a = document.querySelector('#arrival').value;
+        if(a.length == 10){
         
-        //     document.querySelector('#arrival').value = ''
-        // }
+            document.querySelector('#arrival').value = ''
+        }
 
 }       
     });

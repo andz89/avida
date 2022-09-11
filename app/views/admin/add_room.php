@@ -12,7 +12,12 @@
     <span class="invalid-feedback"><?php echo $data['room_name_err']; ?></span>
   </div>
 
-
+  <div class="form-group">
+    <label for="number_of_rooms">Room Quantity</label>
+    <input name="number_of_rooms" type="number" class="form-control form-control-lg <?php echo (!empty($data['number_of_rooms_err'])) ? 'is-invalid' : ''; ?>"  value="<?php echo $data['number_of_rooms'] ?> " > 
+    <span class="invalid-feedback"><?php echo $data['number_of_rooms_err']; ?></span>
+    
+  </div>  
 
 
   <div class="form-group">

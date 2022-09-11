@@ -70,20 +70,21 @@ function script_edit_rooms_admin(){
      $range_dates =  join(" ",$new_string);
       return $range_dates ;
   }
-function disable_dates($array){
+function disable_dates($array,$quantity){
   $data = [];
   foreach($array as $li){
 
-  array_push($data,$li->arrival_date);
+  array_push($data, $li->arrival_date);
   }
   $i = implode(' ', $data);
-  $i = explode(' ', $i);
-  $new_array = array_count_values($i);
+  $e = explode(' ', $i);
+  $new_array = array_count_values($e);
+    $final = [];
   foreach($new_array as $li =>$key){
-  if($key  > 2){
- return $li;
+  if($key  > $quantity){
+    array_push($final, $li);
   }
   }
-
+  return $final;
 
 }

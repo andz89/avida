@@ -59,13 +59,15 @@
     // }
     public function add_room($data){
     
-      $this->db->query('INSERT INTO rooms (room_name, description_1, description_2,image_path,image_filename) VALUES(:room_name, :description_1, :description_2,:image_path,:image_filename)');
+      $this->db->query('INSERT INTO rooms (room_name, number_of_rooms, description_1, description_2,image_path,image_filename) VALUES(:room_name, :number_of_rooms, :description_1, :description_2,:image_path,:image_filename)');
       // Bind values
       $this->db->bind(':room_name', $data['room_name']);
       $this->db->bind(':description_1', $data['description_1']);
       $this->db->bind(':description_2', $data['description_2']);
       $this->db->bind(':image_path', $data['image_path']);
       $this->db->bind(':image_filename', $data['image_filename']);
+      $this->db->bind(':number_of_rooms', $data['number_of_rooms']);
+
 
 
 
@@ -79,13 +81,15 @@
     }
     public function update_room($data){
     
-      $this->db->query('UPDATE rooms SET room_name = :room_name, description_1 = :description_1,description_2 = :description_2,image_path = :image_path WHERE id = :id');
+      $this->db->query('UPDATE rooms SET room_name = :room_name,number_of_rooms = :number_of_rooms, description_1 = :description_1,description_2 = :description_2,image_path = :image_path WHERE id = :id');
       // Bind values
       $this->db->bind(':id', $data['id']);
       $this->db->bind(':room_name', $data['room_name']);
       $this->db->bind(':description_1', $data['description_1']);
       $this->db->bind(':description_2', $data['description_2']);
       $this->db->bind(':image_path', $data['image_path']);
+      $this->db->bind(':number_of_rooms', $data['number_of_rooms']);
+
       // $this->db->bind(':image_thumbnail', $data['image_thumbnail']);
 
 
