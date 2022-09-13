@@ -46,11 +46,11 @@ class Admin extends Controller{
               $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             
             
-              $fileName = $_FILES['image_big']['name'];
-              $fileTempName = $_FILES['image_big']['tmp_name'];
+              $fileName = $_FILES['image_path']['name'];
+              $fileTempName = $_FILES['image_path']['tmp_name'];
                 print_r($fileTempName);
-              $fileType = $_FILES['image_big']['type'];
-              $fileError = $_FILES['image_big']['error'];
+              $fileType = $_FILES['image_path']['type'];
+              $fileError = $_FILES['image_path']['error'];
 
   
               $fileExt = explode('.',$fileName);
@@ -62,20 +62,21 @@ class Admin extends Controller{
             'description_1' => trim($_POST['description_1']),
             'description_2' => trim($_POST['description_2']),
             'number_of_rooms' => trim($_POST['number_of_rooms']),
+            'price' => trim($_POST['price']),
             'image_path' =>'',
-          
-            // 'image_thumbnail' => trim($_POST['image_thumbnail']),
-
             'room_name_err' => '',
             'description_1_err'=> '',
             'description_2_err'=> '',
-            'image_big_err'=>''
+        
             
         ]; 
         //validate inputs
         if(empty($data['room_name'])){
                 $data['room_name_err'] = 'Please enter room name';
         }
+        if(empty($data['price'])){
+          $data['price_err'] = 'Please enter room price';
+  }
         if(empty($data['number_of_rooms'])){
           $data['number_of_rooms_err'] = 'Please enter room quantity';
   }
@@ -86,15 +87,15 @@ class Admin extends Controller{
           $data['description_2_err'] = 'Please enter room description';
         }
         if(!in_array($fileActualExt, $allowed)){
-          $data['image_big_err'] = 'Wrong type of file';
+          $data['image_path_err'] = 'Wrong type of file';
 
         }
         if($fileError != 0){
-          $data['image_big_err'] = 'there was an error uploading your photo';
+          $data['image_path_err'] = 'there was an error uploading your photo';
 
         }
          // Make sure errors are empty
-         if(empty($data['image_big_err']) && empty($data['room_name_err']) && empty($data['description_1_err']) && empty($data['description_2_err']) &&  empty($data['number_of_rooms_err'])){
+         if(empty($data['image_path_err']) && empty($data['price_err']) && empty($data['room_name_err']) && empty($data['description_1_err']) && empty($data['description_2_err']) &&  empty($data['number_of_rooms_err'])){
           $fileNewName = uniqid('',true)."." .$fileActualExt;
           $fileDestination =   'images/'.$fileNewName;  
           move_uploaded_file($fileTempName, $fileDestination);
@@ -113,10 +114,14 @@ class Admin extends Controller{
 
 
           }else{
-            $data =  ['room_name' => '',
+            $data =  [
+            'room_name' => '',
             'description_1' => '',
             'description_2' => '',
-            'number_of_rooms' => ''
+            'number_of_rooms' => '',
+            'price' => '',
+
+
         ];   
  
           $this->view('admin/add_room', $data);
@@ -140,7 +145,7 @@ class Admin extends Controller{
               
                 $fileName = $_FILES['image_path']['name'];
                 $fileTempName = $_FILES['image_path']['tmp_name'];
-                  print_r($fileTempName);
+              
                 $fileType = $_FILES['image_path']['type'];
                 $fileError = $_FILES['image_path']['error'];
   
@@ -156,17 +161,18 @@ class Admin extends Controller{
               'description_2' => trim($_POST['description_2']),
               'image_path' =>trim($_POST['image_path']),
               'number_of_rooms' =>trim($_POST['number_of_rooms']),
-
+              'price' =>trim($_POST['price']),
               'room_name_err' => '',
               'description_1_err'=> '',
               'description_2_err'=> '',
-              'image_big_err'=>''
-              
           ]; 
           //validate inputs
           if(empty($data['room_name'])){
                   $data['room_name_err'] = 'Please enter room name';
           }
+          if(empty($data['price'])){
+            $data['price_err'] = 'Please enter room name';
+    }
           if(empty($data['number_of_rooms'])){
             $data['number_of_rooms_err'] = 'Please enter room quantity';
     }
@@ -176,20 +182,21 @@ class Admin extends Controller{
           if(empty($data['description_2'])){
             $data['description_2_err'] = 'Please enter room description';
           }
+         
           if($fileName == true){
-          
+         
             if(!in_array($fileActualExt, $allowed)){
-              $data['image_big_err'] = 'Wrong type of file';
+              $data['image_path_err'] = 'Wrong type of file';
     
             }
             if($fileError != 0){
-              $data['image_big_err'] = 'there was an error uploading your photo';
+              $data['image_path_err'] = 'there was an error uploading your photo';
     
             }
           }
-         
+   
            // Make sure errors are empty
-           if((empty($data['image_big_err']) && empty($data['room_name_err']) && empty($data['description_1_err']) && empty($data['description_2_err']) && empty($data['number_of_rooms_err']))){
+           if((empty($data['image_path_err']) && (empty($data['price_err'])) && empty($data['room_name_err']) && empty($data['description_1_err']) && empty($data['description_2_err']) && empty($data['number_of_rooms_err']))){
            
             // if did not uoload new image
             if($fileName == true){
@@ -199,7 +206,7 @@ class Admin extends Controller{
               $data['image_path'] = URLROOT . '/'. 'images/'.$fileNewName;
             
             }
-            
+          
             if($this->roomModel->update_room($data)){
                 flash('room added', 'Room added');
                 redirect('admin/rooms');
@@ -207,6 +214,8 @@ class Admin extends Controller{
               die('something went wrong');
             }
            }else{
+      
+            return false;
             $this->view('admin/edit_room', $data);
            }
   
@@ -228,7 +237,9 @@ class Admin extends Controller{
           'description_1' => $room->description_1,
           'description_2' =>  $room->description_2,
           'image_path' => $room->image_path,
-          'number_of_rooms' => $room->number_of_rooms
+          'number_of_rooms' => $room->number_of_rooms,
+          'price' => $room->price
+
 
 
           ]; 
@@ -286,6 +297,10 @@ class Admin extends Controller{
                    'email' => trim($_POST['email']),
                    'telephone' => trim($_POST['telephone']),
                    'address' =>  trim($_POST['address']),
+                   'update_at' => date("Y-m-d H:i:s"),
+
+                  
+
 
                   
                  ];
@@ -323,7 +338,9 @@ class Admin extends Controller{
                     'id'=> $contact->id,
                     'telephone' => $contact->telephone,
                   'email' => $contact->email,
-                  'address' => $contact->address
+                  'address' => $contact->address,
+                  'update_at' => $contact->update_at
+
                              
                 ];
                 $this->view('admin/contact', $data);

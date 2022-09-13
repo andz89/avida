@@ -11,6 +11,8 @@ function user_role($page){
 
   }
 
+
+
 }
 function admin_role($page){
   if(isset($_SESSION['user_role'])){
@@ -21,6 +23,9 @@ function admin_role($page){
     return false;
 
   }
+}
+else{
+  redirect($page); 
 }
 }
 function check_id($id,$page){

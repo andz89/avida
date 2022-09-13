@@ -193,7 +193,7 @@ class Users extends Controller{
         $_SESSION['user_password'] = $user->password;
 
 
-
+        
        
 
         redirect('index');

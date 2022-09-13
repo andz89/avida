@@ -6,12 +6,21 @@
 <?php require APPROOT . '/views/inc/navbar.php'; ?>
 
 
-        <div class="container booking-page my-5">
+        <div class="container  my-5" style="height:500px">
         <ul class="list-group  m-5 ">
-        <div class="booking-header "style="background-color:#f8efda" >
-        <h4 class=" text-dark"> Your Booking</h4> 
+        <div class="list-group-item p-3 bg-white" >
+        <h4 class=" text-dark"> <i class="fa-solid fa-bookmark"></i> Your Booking</h4> 
         
         </div>
+        <?php if($data['booking']):?>
+   
+        <?php else: ?>
+
+          <h3 class="text-center mt-5"> No bookings added</h3>
+        <?php endif; ?>
+
+
+         
         <?php foreach($data['booking'] as  $bookings): ?>
        
               <li class="list-group-item">
@@ -21,8 +30,8 @@
             <span><b> Room Type:</b>  <?php echo $bookings->room_name ?></span><br>
             <span><b>Number of Adults:  </b> <?php echo $bookings->number_adults?></span><br>
             <span><b>Number of Children: </b>  <?php echo $bookings->number_children?></span><br>
-            <span><b> Date of Arrival:</b> <?php echo $bookings->arrival_date  ?></span><br>
-            <span><b> Date of Departure: </b> <?php echo $bookings->departure_date ?></span><br>
+            <span><b>Booking Dates:</b> <?php echo $bookings->check_in_and_out  ?></span><br>
+
 
             </li>
             <?php endforeach; ?>

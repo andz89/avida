@@ -33,6 +33,8 @@
               <span class="fs-5">  Room ID:  <b><?php echo $rooms->id?> </b> </span>
 
               <h6> Room name: <b> <?php echo $rooms->room_name?></b></h6>
+              <h6> Room Pricce: <b> <?php echo $rooms->price?></b></h6>
+
               </div>
        
               <small class="mt-2"> <?php echo $rooms->date?> </small>
@@ -81,14 +83,14 @@
             
             <hr class="my-1 bg-white p-0 m-0">
             <span><b> description 1</b> </span><br>
-            <div>
+            <textarea class="p-2" rows="4" readonly style="width:100%">
             <?php echo $rooms->description_1?>
-            </div>
+            </textarea>
             <hr class="my-1 bg-white p-0 m-0">
             <span><b> description 2</b> </span><br>
-            <div>
+            <textarea class="p-2" rows="4" readonly style="width:100%">
             <?php echo $rooms->description_2?>
-            </div>
+            </textarea>
             <hr class="my-1 bg-white p-0 m-0">
             <div>
             <span><b> Image </b> </span><br>

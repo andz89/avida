@@ -32,9 +32,9 @@
          
             <!-- date calendar -->
         <div class="form-group">
-        <label for="arrival_date">Select a range of dates using the range calendar.: <sup>*</sup></label>
-        <input id="arrival" name="arrival_date"  class="form-control form-control-lg <?php echo (!empty($data['arrival_date_err'])) ? 'is-invalid' : ''; ?>" value=""placeholder="Check in date" >
-        <span class="invalid-feedback"><?php echo $data['arrival_date_err']; ?></span>
+        <label for="check_in_and_out">Select a range of dates using the range calendar.: <sup>*</sup></label>
+        <input id="arrival" name="check_in_and_out"  class="form-control form-control-lg <?php echo (!empty($data['check_in_and_out_err'])) ? 'is-invalid' : ''; ?>" value=""placeholder="Check in date" >
+        <span class="invalid-feedback"><?php echo $data['check_in_and_out_err']; ?></span>
         </div>
     
 

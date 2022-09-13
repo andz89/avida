@@ -44,8 +44,8 @@
             <span><b> Room Type:</b>  <?php echo $booking->room_name ?></span>
             <span><b>Number of Adults:  </b> <?php echo $booking->number_adults?></span>
             <span><b>Number of Children: </b>  <?php echo $booking->number_children?></span>
-            <span><b> Date of Arrival:</b> <?php echo $booking->arrival_date ?></span>
-            <span><b> Date of Departure: </b> <?php echo $booking->departure_date ?></span>
+            <span><b> Date of Arrival:</b> <?php echo $booking->check_in_and_out ?></span>
+            
          
       
             <form action="<?php echo URLROOT; ?>/admin/approve_book?id=<?php echo $booking->id ?>" method="post">
@@ -63,19 +63,6 @@
 </div>
 
   
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php endforeach; ?>
 
 

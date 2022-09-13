@@ -120,7 +120,7 @@
         }
         public function getTakenDates($data){
           // SELECT COL_NAME AS 'Column_Name', TAB_NAME AS 'Table_Name'
-          $this->db->query('SELECT  arrival_date FROM  book WHERE room_name = :room_name');
+          $this->db->query('SELECT  booking_dates FROM  book WHERE room_name = :room_name');
           $this->db->bind(':room_name', $data);
 
           $results = $this->db->resultSet();
@@ -151,12 +151,13 @@
 
         public function update_contact($data){
     
-          $this->db->query('UPDATE contact SET telephone = :telephone, email = :email, address = :address WHERE id = :id');
+          $this->db->query('UPDATE contact SET telephone = :telephone, email = :email, update_at = :update_at, address = :address WHERE id = :id');
           // Bind values
           $this->db->bind(':id', $data['id']);
           $this->db->bind(':telephone', $data['telephone']);
           $this->db->bind(':email', $data['email']);
           $this->db->bind(':address', $data['address']);
+          $this->db->bind(':update_at', $data['update_at']);
 
           // $this->db->bind(':image_thumbnail', $data['image_thumbnail']);
     

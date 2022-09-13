@@ -12,6 +12,11 @@
     <span class="invalid-feedback"><?php echo $data['room_name_err']; ?></span>
   </div>
   <div class="form-group">
+    <label for="price">price</label>
+    <input type="text" name="price" class="form-control form-control-lg <?php echo (!empty($data['price_err'])) ? 'is-invalid' : ''; ?>"  value=" <?php echo $data['price'] ?>">
+    <span class="invalid-feedback"><?php echo $data['price_err']; ?></span>
+  </div>
+  <div class="form-group">
     <label for="number_of_rooms">Room Quantity</label>
     <input name="number_of_rooms"  class="form-control form-control-lg <?php echo (!empty($data['number_of_rooms_err'])) ? 'is-invalid' : ''; ?>"  value="<?php echo $data['number_of_rooms'] ?> " > 
     <span class="invalid-feedback"><?php echo $data['number_of_rooms_err']; ?></span>
@@ -42,9 +47,9 @@
 
   <div class="form-group mt-3">
   <label for="imgInput" class="btn btn-secondary">Change Image</label> <span  id="file-name" style="font-size:20px;"></span>
-    <input type="file" name="image_big" id="imgInput"  style="display:none ;" class=" form-control form-control-lg <?php echo (!empty($data['image_big_err'])) ? 'is-invalid' : ''; ?>" >
+    <input type="file" name="image_path" id="imgInput"  style="display:none ;" class=" form-control form-control-lg <?php echo (!empty($data['image_path_err'])) ? 'is-invalid' : ''; ?>" >
   
-    <span class="invalid-feedback"><?php echo $data['image_big_err']; ?></span>
+    <span class="invalid-feedback"><?php echo $data['image_path_err']; ?></span>
 
   </div>
  

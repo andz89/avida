@@ -18,7 +18,11 @@
     <span class="invalid-feedback"><?php echo $data['number_of_rooms_err']; ?></span>
     
   </div>  
-
+  <div class="form-group">
+    <label for="price">Room Price</label>
+    <input name="price" type="number" class="form-control form-control-lg <?php echo (!empty($data['price_err'])) ? 'is-invalid' : ''; ?>"  value="<?php echo $data['price'] ?> " > 
+    <span class="invalid-feedback"><?php echo $data['price_err']; ?></span>
+  </div>  
 
   <div class="form-group">
     <label for="description_1">Room description 1</label>

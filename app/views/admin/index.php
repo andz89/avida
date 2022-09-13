@@ -9,19 +9,34 @@
 
       
       
-  <h1 class="display-5 mt-5 ">Avida Hotel Dashboard</h1>
+  <h1 class="display-5 mt-5 ">Avida Hotel Dashboard </h1>
   <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
   <hr class="my-4">
 
-   <span style="font-size: 16px; ">Total No. of booking added:   <b><?php echo $data['added-book']?></b> </span>
-    <br>
-  <span style="font-size: 16px; ">Total No. of added rooms:  <b><?php echo $data['added-rooms']?></b></span>
-   <br>
-  <span style="font-size: 16px; ">Total No. of users:  <b><?php echo $data['users']?> </b></span>
+
+  <div class="row list-unstyled">
+          <div class="col-md-4 ">
+            <div><b> Rooms :</b></div>
+            <li style="font-size: 16px; ">Added rooms :  <b><?php echo $data['added-rooms']?></b></li >
+            
+
+           
+          </div>
+          <div class="col-md-4">
+          <div><b> Users : </b></div>
+         
+          <li style="font-size: 16px; ">users:  <b><?php echo $data['users']?> </b></li>
+
+  
+          </div>
+          <div class="col-md-4">
+          <div><b> Transanction :</b></div>
+          <li style="font-size: 16px; ">Pending bookings:   <b><?php echo $data['added-book']?></b> </li>
 
 
-</span>
-
+     
+          </div>
+        </div>
 
  
 

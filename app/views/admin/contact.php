@@ -1,14 +1,73 @@
 <?php require APPROOT . '/views/inc/header.php';?>  
 <?php require APPROOT . '/views/inc/admin_navbar.php'; ?> <!-- admin nav -->
-<div  style="height: 40px;">
-        <div class="alert-flash text-center"> <?php flash('contact_update'); ?></div>
 
-        </div>
 
-  <div class="login mt-0">
-    <div class="col-md-4 mx-auto">
-      <div class="card card-body bg-light mt-3">
-        <h2>Contact</h2>
+<div class="alert-flash text-center p-0" style="position:fixed; width:100%; z-index:9"> 
+        
+        <?php flash('contact_update'); ?>
+      </div>
+<div class="container col-md-8 mx-auto ">
+  
+   
+
+ 
+<div class="list-group mt-4">
+    <div class="bg-dark px-4 pt-4 pb-1 text-white">
+        <h4>Contact</h4>
+        <hr class="my-4 bg-white p-0 m-0">
+        <div class="d-flex justify-content-between align-items-center">
+        <!-- <span>Total No. of added rooms: <b><?php echo $data['added-rooms']?> </b> </span>  -->
+        <!-- <a href="<?php echo URLROOT;?>/admin/add_room" class="btn btn-success btn-md">Add Rooms</a> -->
+      </div>
+    </div>
+
+
+<!-- sdfdsf ------------------------ -->
+<div class="list-group-item  flex-column align-items-start  mt-0 pt-1">
+              <div  class="d-flex w-100 justify-content-end ">
+              <small class="">Last update:  <?php echo  $data['update_at']; ?></small>  
+
+            
+
+          
+              </div>
+            
+            <div class="d-flex w-100 justify-content-between mb-0">
+              <div>
+        
+              <h6> Telephone : <b>  <?php echo  $data['telephone']; ?></b></h6>
+              <h6> Email : <b> <?php echo $data['email'] ?></b></h6>
+              <h6> Address : <b> <?php echo $data['address'] ?></b></h6>
+        
+
+
+              </div>
+
+              <div>
+              <span class="btn btn-primary btn-sm" data-toggle="collapse" href="#contact-id" role="button" aria-expanded="false" aria-controls="contact-id">
+             Edit
+            </span>
+              </div>
+             
+
+              
+            </div>
+            <div class="d-flex align-items-baseline mt-0 pt-0">
+     
+
+  
+
+
+
+      </div>    
+</div>
+            <!-- hide area -->
+            <div class="collapse mt-0 p-0" id="contact-id">
+    
+
+
+      <div class="card card-body bg-light">
+        <h5>Edit Contact</h5>
        
         <form action="<?php echo URLROOT; ?>/admin/contact" method="post">
         <input type="hidden" name='id' value="<?php echo $data['id'] ?>">
@@ -36,8 +95,19 @@
           </div>
         </form>
       </div>
-    </div>
-  </div>
+
+          
+</div>
+
+</div>
+</div>
+
+
+
+
+
+<!-- Sdfsdfsd-------------------------------- -->
+
   <script>
   <?php echo alert_flash(); ?>
 

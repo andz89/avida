@@ -9,7 +9,7 @@
 
     <div class="col-md-6 mx-auto my-5 " style="height: 400px; ">
       <div class="card card-body" style="background-color: #f8efda;margin-top:100px">
-        <h2>Your Account</h2>
+     <h2><i class="fa-solid fa-user text-dark"></i>  Your Account</h2>
        
         <div class="mb-1"><b>User Name:</b>  <?php echo $_SESSION['user_name'] ?></div>
         <div class="mb-1"><b>Email:</b>  <?php echo $_SESSION['user_email']?></div>
@@ -21,6 +21,7 @@
 
       </div>
     </div>
+    
     <?php require APPROOT . '/views/inc/footer.php';?>
   
 

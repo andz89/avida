@@ -8,7 +8,6 @@
 @import 'login.scss';
 @import 'rooms.scss';
 @import 'contact.scss';
-@import 'booking.scss';
 @import 'buttons.scss';
 
 
@@ -18,7 +17,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
 .flatpickr-calendar{
-    background-color: rgb(171, 204, 247);
+    background-color: F7F6DC;
     color: aliceblue;
     user-select: none;
 
@@ -31,4 +30,10 @@
 
 .taken {
     display: none;
+
+}
+*{
+    margin: 0;
+    padding: 0;
+    
 }

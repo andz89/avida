@@ -8,7 +8,7 @@ class Pages extends Controller{
 
     public function index(){
         $data =  ['title' => 'Avida Hotel',
-                'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
+                'description' => ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni porro rem voluptates, sit amet consectetur adipisicing elit. Magni porro rem voluptates, sit amet consectetur adipisicing elit.Lorem ipsum dolor sit amet consectetur adipisicing elit.',
       
             ];   
      
@@ -22,7 +22,7 @@ class Pages extends Controller{
         $data =  [
             'title' => 'About Lavida Hotel',
         'description' => '  Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni porro rem voluptates, sit amet consectetur adipisicing elit. Magni porro rem voluptates, sit amet consectetur adipisicing elit. Magni porro rem voluptates, Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni porro rem voluptates, sit amet consectetur adipisicing elit. Magni porro rem voluptates, sit amet consectetur adipisicing elit. Magni porro rem voluptates,Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni porro rem voluptates, sit amet consectetur adipisicing elit. Magni porro rem voluptates, sit amet consectetur adipisicing elit. Magni porro rem voluptates,
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni porro rem voluptates, sit amet consectetur adipisicing elit. Magni porro rem voluptates, sit amet consectetur adipisicing elit. Magni porro rem voluptates, Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni porro rem voluptates, sit amet consectetur adipisicing elit.  amet consectetur adipisicing elit. Magni porro rem voluptates, sit amet consectetur adipisicing elit. Magni porro rem voluptates, sit amet consectetur adipisicing elit. Magni porro rem voluptates, Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni porro rem voluptates, sit amet consectetur adipisicing elit.g elit. Magni porro rem voluptates, sit amet consectetur adipisicing elit. Magni porro rem voluptates, Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni porro rem voluptates, sit amet consectetur adipisicing elit',
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni porro rem voluptates, sit amet consectetur adipisicing elit. Magni porro rem voluptates, sit amet consectetur adipisicing elit. Magni porro rem voluptates, Lorem ipsum dolor.',
    
     ];
         $this->view('pages/about',  $data);
@@ -59,12 +59,18 @@ class Pages extends Controller{
             'id'=> $rooms->id,
             'room_name'=> $rooms->room_name,
             'image_path'=> $rooms->image_path,
+            'price'=> $rooms->price,
             'description_1'=> $rooms->description_1,
             'description_2'=> $rooms->description_2,
         ];
         $this->view('pages/room', $data);
     }
     public function booking(){
+      if(!$_SESSION['user_id']){
+        redirect('index');
+        return false;
+      }
+    
       $rooms =  $this->roomModel->findRoomByRoom($_GET['id']);
       $date_taken = $this->userModel->getTakenDates($rooms->room_name);
 
@@ -74,7 +80,10 @@ class Pages extends Controller{
       
     
           if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            user_role('pages/booking');
+            if($_SESSION['user_role'] == 'admin'){
+              redirect("pages/booking?id=". $_GET['id']);
+              return false;
+            }
          
             $data =  ['booking_id'=> uniqid('', true),
                     'user_id' =>$_SESSION['user_id'],
@@ -85,25 +94,33 @@ class Pages extends Controller{
                      'room_id' =>$rooms->id,
                      'room_name' => $rooms->room_name,
                      'number_adults' => trim($_POST['number_adults']),   
-                     'number_children' =>  trim($_POST['number_children']),   
-                    'arrival_date' => trim($_POST['arrival_date']),
-                  
+                     'number_children' =>  trim($_POST['number_children']),  
+                    'booking_dates' => '',
+
+                    'check_in_and_out' => trim($_POST['check_in_and_out']),
+              
+
+                 
                     'booking_status' =>'pending',
                     'user_email_err'=> '',
-                    'arrival_date_err' => '',
+                    'check_in_and_out_err' => '',
                     'number_children_err' => ''
                 ]; 
             
                 //check if room quatity is updated during changes of quantity
          
                 $dates_disable =  disable_dates($date_taken,$rooms->number_of_rooms);
-                // $arr = [];
-                // foreach($dates_disable as $list){
-                //     array_push($arr, $list);
-                // }
+                
                
-              
-                $a  =  explode("to",$data['arrival_date']);
+                  // Validate check_in_and_out
+                  if(empty($data['check_in_and_out'])){
+                    $data['check_in_and_out_err'] = 'Pleae enter range dates';
+                  $this->view('pages/booking', $data);
+
+                    return false;
+                }
+
+                $a  =  explode("to",$data['check_in_and_out']);
                 $b_range = getBetweenDates($a[0], $a[1]);
                 $b  =  explode(" ", $b_range);
 
@@ -118,7 +135,7 @@ class Pages extends Controller{
               foreach($new_array as $li =>$key){
               if($key  > 1){
               
-                $data['arrival_date_err'] = 'soory! room limit is reached Please refresh the page!';
+                $data['check_in_and_out_err'] = 'soory! room limit is reached Please refresh the page!';
            
                 $this->view('pages/booking', $data);
                 return false;
@@ -135,27 +152,27 @@ class Pages extends Controller{
                    }
 
 
-                   if($data['arrival_date'] == null){
-                    $data['arrival_date_err'] = 'Please select range date';
+                   if($data['check_in_and_out'] == null){
+                    $data['check_in_and_out_err'] = 'Please select range date';
                 
 
-                 
                    }
 
-                   $string_num = strlen($data['arrival_date']);
+                   $string_num = strlen($data['check_in_and_out']);
 
                    if($string_num == 10){
 
-                    $data['arrival_date_err'] = 'Please select range date';
+                    $data['check_in_and_out_err'] = 'Please select range date';
 
                    }
                    
                   
                  
-                    if(empty($data['number_adults_err']) && empty($data['arrival_date_err']) ){
-                      $string  =  explode("to",$data['arrival_date']);
+                    if(empty($data['number_adults_err']) && empty($data['check_in_and_out_err']) ){
+                      
+                      $string  =  explode("to",$data['check_in_and_out']);
                       $date_range = getBetweenDates($string[0], $string[1]);
-                      $data['arrival_date'] =  $date_range;
+                      $data['booking_dates'] =  $date_range;
                         // Validated
                         if($this->roomModel->insert_booking($data)){
                       
@@ -179,10 +196,9 @@ class Pages extends Controller{
           }else{
           
             check_id($_GET['id'], 'index');#room id
-            user_role('users/login');
+     
       
-          
-            
+       
             $dates_disable =  disable_dates($date_taken,$rooms->number_of_rooms);
         
             $data =  ['user_id' =>$_SESSION['user_id'],
@@ -194,7 +210,8 @@ class Pages extends Controller{
                      'number_adults'=> '',
                      'number_children'=> ''
                 ];   
-            $this->view('pages/booking', $data);
+                $this->view('pages/booking', $data);
+
           }
             
        
