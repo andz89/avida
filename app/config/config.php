@@ -11,4 +11,13 @@ define('URLROOT', 'http://localhost/avida');
 
 //site name
 
-define('SITENAME', 'Magpopungko hotel');
+define('SITENAME', 'Avida hotel');
+
+
+
+$stripeDetails = array(
+    "secretKey" => "sk_test_51Lj0jSLurj3fjTl9aws9XLlZGN5jdDYzNDXfcT7dupC31ybU4ChhLLN9u7FU2gaisoDfVvhwrAsKV0nUckku8rXI00Ryin4g9N",
+    "publishableKey" => "pk_test_51Lj0jSLurj3fjTl9NilNF3EoSRF93XuNnOHCH3AJxJYliNSrItH2INq85NN4abETbxpDbQCXF3TXrcoZNwABlKyl00LUG5N1Km"
+);
+
+\Stripe\Stripe::setApiKey($stripeDetails["secretKey"]);

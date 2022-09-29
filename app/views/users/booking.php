@@ -6,7 +6,7 @@
 <?php require APPROOT . '/views/inc/navbar.php'; ?>
 
 
-        <div class="container  my-5" style="height:500px">
+        <div class="container  my-5" style=" padding-bottom:100px;">
         <ul class="list-group  m-5 ">
         <div class="list-group-item p-3 bg-white" >
         <h4 class=" text-dark"> <i class="fa-solid fa-bookmark"></i> Your Booking</h4> 
@@ -23,8 +23,8 @@
          
         <?php foreach($data['booking'] as  $bookings): ?>
        
-              <li class="list-group-item">
-            <span class="btn  btn-sm text-white"style="background-color:#256D85"> Status: <b><?php echo $bookings->booking_status ?></b></span><br>
+              <li class="list-group-item my-2">
+          
             
             <span><b> Booking ID:</b>  <?php echo $bookings->booking_id ?></span><br>
             <span><b> Room Type:</b>  <?php echo $bookings->room_name ?></span><br>

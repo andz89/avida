@@ -59,7 +59,7 @@ class Pages extends Controller{
             'id'=> $rooms->id,
             'room_name'=> $rooms->room_name,
             'image_path'=> $rooms->image_path,
-            'price'=> $rooms->price,
+            'room_amount'=> $rooms->room_amount,
             'description_1'=> $rooms->description_1,
             'description_2'=> $rooms->description_2,
         ];
@@ -67,10 +67,21 @@ class Pages extends Controller{
     }
     public function booking(){
       if(!$_SESSION['user_id']){
-        redirect('index');
+        redirect('users/login');
         return false;
+      }else{
+        if(isset($_SESSION['user_role'])){
+          if($_SESSION['user_role'] == 'admin'){
+            redirect('index');
+            return false;
+          }
+        
+        }
       }
-    
+   
+
+     
+
       $rooms =  $this->roomModel->findRoomByRoom($_GET['id']);
       $date_taken = $this->userModel->getTakenDates($rooms->room_name);
 
@@ -80,28 +91,26 @@ class Pages extends Controller{
       
     
           if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            if($_SESSION['user_role'] == 'admin'){
-              redirect("pages/booking?id=". $_GET['id']);
-              return false;
-            }
+
+        
+        
+           
+       
          
             $data =  ['booking_id'=> uniqid('', true),
                     'user_id' =>$_SESSION['user_id'],
                      'user_name'=> $_SESSION['user_name'],
                      'user_email'=> $_SESSION['user_email'],
                      'user_number'=> $_SESSION['user_contact_number'],
-
                      'room_id' =>$rooms->id,
                      'room_name' => $rooms->room_name,
                      'number_adults' => trim($_POST['number_adults']),   
                      'number_children' =>  trim($_POST['number_children']),  
                     'booking_dates' => '',
-
                     'check_in_and_out' => trim($_POST['check_in_and_out']),
-              
+                    'booking_fee' =>  $rooms->booking_fee,
+                    'room_amount' =>  $rooms->room_amount,
 
-                 
-                    'booking_status' =>'pending',
                     'user_email_err'=> '',
                     'check_in_and_out_err' => '',
                     'number_children_err' => ''
@@ -124,12 +133,7 @@ class Pages extends Controller{
                 $b_range = getBetweenDates($a[0], $a[1]);
                 $b  =  explode(" ", $b_range);
 
-             
-
-             
                 $result = array_merge($dates_disable, $b);
-             
-               
                 $new_array = array_count_values($result);
           
               foreach($new_array as $li =>$key){
@@ -168,23 +172,36 @@ class Pages extends Controller{
                    
                   
                  
-                    if(empty($data['number_adults_err']) && empty($data['check_in_and_out_err']) ){
+                    if(empty($data['number_adults_err']) && empty($data['number_children_err']) && empty($data['check_in_and_out_err']) ){
                       
                       $string  =  explode("to",$data['check_in_and_out']);
                       $date_range = getBetweenDates($string[0], $string[1]);
                       $data['booking_dates'] =  $date_range;
-                        // Validated
-                        if($this->roomModel->insert_booking($data)){
-                      
 
-                                redirect('pages/rooms');
-                           
+                      $token = $_POST["stripeToken"];
+                      $amount          = $_POST["booking_fee"]; 
+                      $desc            =  $rooms->room_name;
+                      $total = $amount * 0.01695;
+                      $charge = \Stripe\Charge::create([
+                        "amount" => round($total) * 100,
+                        "currency" => 'USD',
+                        "description"=>$desc,
+                        "source"=> $token,
+                     
+                      ]);
+                      if($charge){
+                         // Validated
+                         if($this->roomModel->insert_booking($data)){
+
                             
-                          } else {
-           
-        
-                            die('Something went wrong');
-                          }
+                        } else {
+         
+      
+                          die('Something went wrong');
+                        }
+                        redirect('pages/rooms');
+                      }
+                       
                        }else{
                         $this->view('pages/booking', $data);
 
@@ -205,6 +222,9 @@ class Pages extends Controller{
                      'user_name'=> $_SESSION['user_name'],
                      'user_email'=> $_SESSION['user_email'],
                      'room_id' =>$rooms->id,
+                     'booking_fee' =>$rooms->booking_fee,
+                     'room_amount' =>$rooms->room_amount,
+
                      'room_name' => $rooms->room_name, 
                      'date_disabled' => $dates_disable,
                      'number_adults'=> '',

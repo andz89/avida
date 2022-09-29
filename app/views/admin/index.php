@@ -14,33 +14,45 @@
   <hr class="my-4">
 
 
-  <div class="row list-unstyled">
-          <div class="col-md-4 ">
-            <div><b> Rooms :</b></div>
-            <li style="font-size: 16px; ">Added rooms :  <b><?php echo $data['added-rooms']?></b></li >
-            
 
-           
-          </div>
-          <div class="col-md-4">
-          <div><b> Users : </b></div>
-         
-          <li style="font-size: 16px; ">users:  <b><?php echo $data['users']?> </b></li>
-
-  
-          </div>
-          <div class="col-md-4">
-          <div><b> Transanction :</b></div>
-          <li style="font-size: 16px; ">Pending bookings:   <b><?php echo $data['added-book']?></b> </li>
-
-
-     
-          </div>
-        </div>
 
  
 
 
+</div>
+
+<div class="container  mx-auto p-0 my-0">
+
+<div class="row flex-lg-row align-items-center justify-content-center  list-unstyled">
+<div class="  col-lg-6  ">
+
+  <ul class="list-group mb-2">
+  <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-white">
+  Rooms :
+    <span class="badge badge-primary badge-pill"> <b> <?php echo $data['added-rooms']?> </b></span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center  bg-dark text-white">
+  Users :
+    <span class="badge badge-primary badge-pill"><b>  <?php echo $data['users']?></b> </span>
+  </li>
+  
+</ul>
+</div>
+
+<div class="  col-lg-6  ">
+
+  <ul class="list-group mb-2" >
+  <li class="list-group-item d-flex justify-content-between align-items-center  bg-dark text-white">
+  bookings : 
+    <span class="badge badge-primary badge-pill "><b><?php echo $data['added-book']?></b></span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center  bg-dark text-white">
+  Tatal Payment Recieved : 
+    <span class="badge badge-primary badge-pill"> <b>500</b></span>
+  </li>
+</ul>
+</div>
+</div>
 </div>
 
 

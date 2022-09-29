@@ -11,7 +11,7 @@
         <h4>Rooms</h4>
         <hr class="my-4 bg-white p-0 m-0">
         <div class="d-flex justify-content-between align-items-center">
-        <span>Total No. of added rooms: <b><?php echo $data['added-rooms']?> </b> </span> 
+        <span>Total No. of added rooms: <?php echo $data['added-rooms']?> </b> </span> 
         <a href="<?php echo URLROOT;?>/admin/add_room" class="btn btn-success btn-md">Add Rooms</a>
       </div>
     </div>
@@ -20,7 +20,7 @@
             <div class="list-group-item  flex-column align-items-start  mt-1">
               <div  class="d-flex w-100 justify-content-between">
 
-              <span  class="btn btn-success  btn-sm py-0 my-1" >Number of rooms: <b><?php echo $rooms->number_of_rooms?></b>  </span><br> 
+              <span  class="btn btn-success  btn-sm py-0 my-1" >Number of rooms: <?php echo $rooms->number_of_rooms?></b>  </span><br> 
 
               <span class="btn btn-primary btn-sm" data-toggle="collapse" href="#<?php echo $rooms->id?>" role="button" aria-expanded="false" aria-controls="<?php echo $rooms->id?>">
              View Room Details
@@ -30,17 +30,17 @@
             <div class="d-flex w-100 justify-content-between mb-0">
               <div>
         
-              <span class="fs-5">  Room ID:  <b><?php echo $rooms->id?> </b> </span>
+              <span class="fs-5"> <b>Room ID: </b>   <?php echo $rooms->id?> </b> </span>
 
-              <h6> Room name: <b> <?php echo $rooms->room_name?></b></h6>
-              <h6> Room Pricce: <b> <?php echo $rooms->price?></b></h6>
+              <h6> <b> Room name:</b>   <?php echo $rooms->room_name?></b></h6>
+              <h6> <b> Room Pricce:</b>   <?php echo $rooms->room_amount?></b></h6>
+              <h6> <b>Booking fee:</b>   <?php echo $rooms->booking_fee?></b></h6>
+
 
               </div>
        
               <small class="mt-2"> <?php echo $rooms->date?> </small>
-           
 
-              
             </div>
             <div class="d-flex align-items-baseline mt-0 pt-0">
      
@@ -82,18 +82,18 @@
             <div class="collapse" id="<?php echo $rooms->id?>">
             
             <hr class="my-1 bg-white p-0 m-0">
-            <span><b> description 1</b> </span><br>
+            <span> description 1</b> </span><br>
             <textarea class="p-2" rows="4" readonly style="width:100%">
             <?php echo $rooms->description_1?>
             </textarea>
             <hr class="my-1 bg-white p-0 m-0">
-            <span><b> description 2</b> </span><br>
+            <span> description 2</b> </span><br>
             <textarea class="p-2" rows="4" readonly style="width:100%">
             <?php echo $rooms->description_2?>
             </textarea>
             <hr class="my-1 bg-white p-0 m-0">
             <div>
-            <span><b> Image </b> </span><br>
+            <span> Image </b> </span><br>
 
               <img src="<?php echo $rooms->image_path?>" width="50%" alt="">
      

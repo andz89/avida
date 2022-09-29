@@ -26,7 +26,7 @@ h4:hover{
         <a href="<?php echo URLROOT; ?>/pages/room?id=<?php echo $rooms->id ?>"> <img class="card-img-top" src="<?php echo $rooms->image_path ?> "  alt="Card image cap"></a>
         <div class="card-body ">
         <a href="<?php echo URLROOT; ?>/pages/room?id=<?php echo $rooms->id ?>"style=" text-decoration:none;"><h4 class=" text-left" ><?php echo $rooms->room_name ?></h4></a>
-        <span class=" text-left"> <h5><b> <?php echo $rooms->price?></b></h5> </span>
+        <span class=" text-left"> <h5><b> <?php echo $rooms->room_amount?></b></h5> </span>
         <p class="card-text text-left"><?php echo $rooms->description_1 ?></p>
         </div>
     </div>

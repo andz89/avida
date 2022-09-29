@@ -62,7 +62,7 @@ class Admin extends Controller{
             'description_1' => trim($_POST['description_1']),
             'description_2' => trim($_POST['description_2']),
             'number_of_rooms' => trim($_POST['number_of_rooms']),
-            'price' => trim($_POST['price']),
+            'room_amount' => trim($_POST['room_amount']),
             'image_path' =>'',
             'room_name_err' => '',
             'description_1_err'=> '',
@@ -74,8 +74,8 @@ class Admin extends Controller{
         if(empty($data['room_name'])){
                 $data['room_name_err'] = 'Please enter room name';
         }
-        if(empty($data['price'])){
-          $data['price_err'] = 'Please enter room price';
+        if(empty($data['room_amount'])){
+          $data['room_amount_err'] = 'Please enter room room_amount';
   }
         if(empty($data['number_of_rooms'])){
           $data['number_of_rooms_err'] = 'Please enter room quantity';
@@ -95,7 +95,7 @@ class Admin extends Controller{
 
         }
          // Make sure errors are empty
-         if(empty($data['image_path_err']) && empty($data['price_err']) && empty($data['room_name_err']) && empty($data['description_1_err']) && empty($data['description_2_err']) &&  empty($data['number_of_rooms_err'])){
+         if(empty($data['image_path_err']) && empty($data['room_amount_err']) && empty($data['room_name_err']) && empty($data['description_1_err']) && empty($data['description_2_err']) &&  empty($data['number_of_rooms_err'])){
           $fileNewName = uniqid('',true)."." .$fileActualExt;
           $fileDestination =   'images/'.$fileNewName;  
           move_uploaded_file($fileTempName, $fileDestination);
@@ -119,7 +119,9 @@ class Admin extends Controller{
             'description_1' => '',
             'description_2' => '',
             'number_of_rooms' => '',
-            'price' => '',
+            'room_amount' => '',
+            'booking_fee' => '',
+
 
 
         ];   
@@ -161,7 +163,9 @@ class Admin extends Controller{
               'description_2' => trim($_POST['description_2']),
               'image_path' =>trim($_POST['image_path']),
               'number_of_rooms' =>trim($_POST['number_of_rooms']),
-              'price' =>trim($_POST['price']),
+              'room_amount' =>trim($_POST['room_amount']),
+              'booking_fee' =>trim($_POST['booking_fee']),
+
               'room_name_err' => '',
               'description_1_err'=> '',
               'description_2_err'=> '',
@@ -170,8 +174,11 @@ class Admin extends Controller{
           if(empty($data['room_name'])){
                   $data['room_name_err'] = 'Please enter room name';
           }
-          if(empty($data['price'])){
-            $data['price_err'] = 'Please enter room name';
+          if(empty($data['booking_fee'])){
+            $data['booking_fee_err'] = 'Please enter room booking fee';
+    }
+          if(empty($data['room_amount'])){
+            $data['room_amount_err'] = 'Please enter room name';
     }
           if(empty($data['number_of_rooms'])){
             $data['number_of_rooms_err'] = 'Please enter room quantity';
@@ -196,7 +203,7 @@ class Admin extends Controller{
           }
    
            // Make sure errors are empty
-           if((empty($data['image_path_err']) && (empty($data['price_err'])) && empty($data['room_name_err']) && empty($data['description_1_err']) && empty($data['description_2_err']) && empty($data['number_of_rooms_err']))){
+           if((empty($data['image_path_err']) && (empty($data['room_amount_err'])) && empty($data['room_name_err']) && empty($data['description_1_err']) && empty($data['description_2_err']) && empty($data['number_of_rooms_err']))){
            
             // if did not uoload new image
             if($fileName == true){
@@ -238,8 +245,8 @@ class Admin extends Controller{
           'description_2' =>  $room->description_2,
           'image_path' => $room->image_path,
           'number_of_rooms' => $room->number_of_rooms,
-          'price' => $room->price
-
+          'room_amount' => $room->room_amount,
+          'booking_fee' => $room->booking_fee
 
 
           ]; 
@@ -349,25 +356,5 @@ class Admin extends Controller{
 
               }
               
-              public function approve_book(){
-     
-                if($_SERVER['REQUEST_METHOD'] == 'POST'){
-                 $booking = $this->userModel->getBooking($_GET['id']);
-            
-        
-                $data = [
-                  'id' => $booking->id,
-                   'booking_status'=>'Approved',
-                   'date_approved'=> date("l jS \of F Y h:i:s A")
-                ];      
-         
-                 
-                    if($this->userModel->approve_booking($data)){
-                    
-                      redirect('admin/bookings');
-                    }
-         
-                 
-                }
-              }
+       
 }

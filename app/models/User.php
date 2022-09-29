@@ -183,29 +183,7 @@
         }
 
     
-        public function approve_booking($data){
-       
-          $this->db->query('UPDATE book SET booking_status = :booking_status, date_approved = :date_approved WHERE id = :id');
-          // Bind values
-          $this->db->bind(':id', $data['id']);
-    
-          $this->db->bind(':booking_status', $data['booking_status']);
-          $this->db->bind(':date_approved', $data['date_approved']);
-
-
-
-
-          // $this->db->bind(':image_thumbnail', $data['image_thumbnail']);
-    
-    
-          // Execute
-          if($this->db->execute()){
-            return true;
-          } else {
-            return false;
-          }
-        }
-
+   
         
   } 
      

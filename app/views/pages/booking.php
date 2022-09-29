@@ -9,12 +9,15 @@
 
 <div class="col-md-7 mx-auto my-5 ">
       <div class="card card-body bg-light ">
-        <span> User ID : <?php echo $data['user_id'] ?></span>
         <h6>User Name: <strong> <?php echo $data['user_name'] ?></strong></h6>
         <h6>User Email: <strong> <?php echo $data['user_email'] ?></strong></h6>
 
         <h6>Room ID: <strong> <?php echo $data['room_id'] ?></strong></h6>
         <h6>Room Type: <strong> <?php echo $data['room_name'] ?></strong></h6>
+        <h6>Room Amount: <strong> <?php echo $data['room_amount'] ?></strong>  Pesos</h6>
+        <h6>booking Fee: <strong> <?php echo $data['booking_fee'] ?></strong>  Pesos</h6>
+
+
 
         <form action="<?php echo URLROOT; ?>/pages/booking?id=<?php echo $data['room_id'] ?>" method="post">
     
@@ -36,6 +39,7 @@
         <input id="arrival" name="check_in_and_out"  class="form-control form-control-lg <?php echo (!empty($data['check_in_and_out_err'])) ? 'is-invalid' : ''; ?>" value=""placeholder="Check in date" >
         <span class="invalid-feedback"><?php echo $data['check_in_and_out_err']; ?></span>
         </div>
+        <input type="hidden" name="booking_fee"  value="<?php echo $data['booking_fee'] ?>">
     
 
         <div class="taken" >    
@@ -50,10 +54,26 @@
       <div id='test'>
 
       </div>
-            <div class="col">
+            <!-- <div class="col">
               <input type="submit" value="Check out" class="btn btn-primary btn-block">
-            </div>
-      
+            </div> -->
+    
+            <script
+                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                data-key="pk_test_51Lj0jSLurj3fjTl9NilNF3EoSRF93XuNnOHCH3AJxJYliNSrItH2INq85NN4abETbxpDbQCXF3TXrcoZNwABlKyl00LUG5N1Km"
+                data-amount= <?php 
+                $amount = $data['booking_fee'] * 0.01695 ;
+                $total = round($amount) * 100;
+                echo $total;
+                ?>
+                data-name="<?php echo $data['room_name'] ?>"
+                data-description="booking payment for room reservation"
+                data-email=<?php echo $data['user_email'] ?>
+
+                data-currency="usd"
+                data-locale="auto">
+                </script>
+              
         </form>
       </div>
     </div>

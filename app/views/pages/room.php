@@ -15,7 +15,7 @@
    
         </div>
         <h2 class="fw-bold lh-1 "><b> <?php echo $data['room_name'] ?></b></h2  >
-    <h4>  <b> <?php echo $data['price'] ?> </b> </h4>
+    <h4>  <b> <?php echo $data['room_amount'] ?> </b> </h4>
         <p class="lead"><?php echo $data['description_1'] ?></p>
         <p class="lead"><?php echo $data['description_2'] ?></p>
 

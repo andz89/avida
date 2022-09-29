@@ -43,8 +43,8 @@
             <div class="dropdown-menu dropdown-menu-right">
             <a href="<?php echo URLROOT; ?>/users/account" style="text-decoration:none"> 
             <button class="dropdown-item " type="button" >My account</button></a>
-            <a class=""  href="<?php echo URLROOT; ?>/users/booking">
-            <button class="dropdown-item " type="button" > My Booking</button></a>
+            <a class="" style="text-decoration:none" href="<?php echo URLROOT; ?>/users/booking">
+            <button class="dropdown-item " type="button"  > My Booking</button></a>
             <a href="<?php echo URLROOT; ?>/users/logout" style="text-decoration:none"> 
             <button class="dropdown-item" type="button" >Logout</button>
           </a>
