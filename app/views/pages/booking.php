@@ -73,6 +73,7 @@
                 data-currency="usd"
                 data-locale="auto">
                 </script>
+                
               
         </form>
       </div>
