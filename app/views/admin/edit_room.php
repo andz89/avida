@@ -21,12 +21,7 @@
     <input type="text" name="booking_fee" class="form-control form-control-lg <?php echo (!empty($data['booking_fee_err'])) ? 'is-invalid' : ''; ?>"  value=" <?php echo $data['booking_fee'] ?>">
     <span class="invalid-feedback"><?php echo $data['booking_fee_err']; ?></span>
   </div>
-  <div class="form-group">
-    <label for="number_of_rooms" class="font-weight-bold">Room Quantity</label>
-    <input name="number_of_rooms"  class="form-control form-control-lg <?php echo (!empty($data['number_of_rooms_err'])) ? 'is-invalid' : ''; ?>"  value="<?php echo $data['number_of_rooms'] ?> " > 
-    <span class="invalid-feedback"><?php echo $data['number_of_rooms_err']; ?></span>
-    
-  </div>  
+
 
 
 

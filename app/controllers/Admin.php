@@ -72,7 +72,7 @@ class Admin extends Controller{
               'room_name' => trim($_POST['room_name']),
             'description_1' => trim($_POST['description_1']),
             'description_2' => trim($_POST['description_2']),
-            'number_of_rooms' => trim($_POST['number_of_rooms']),
+           
             'room_amount' => trim($_POST['room_amount']),
             'booking_fee' => trim($_POST['booking_fee']),
 
@@ -90,9 +90,7 @@ class Admin extends Controller{
         if(empty($data['room_amount'])){
           $data['room_amount_err'] = 'Please enter room room_amount';
   }
-        if(empty($data['number_of_rooms'])){
-          $data['number_of_rooms_err'] = 'Please enter room quantity';
-         }
+
          if(empty($data['booking_fee'])){
           $data['booking_err'] = 'Please enter booking fee';
          }
@@ -112,7 +110,7 @@ class Admin extends Controller{
         }
        
          // Make sure errors are empty
-         if(empty($data['image_path_err']) && empty($data['booking_err']) && empty($data['room_amount_err']) && empty($data['room_name_err']) && empty($data['description_1_err']) && empty($data['description_2_err']) &&  empty($data['number_of_rooms_err'])){
+         if(empty($data['image_path_err']) && empty($data['booking_err']) && empty($data['room_amount_err']) && empty($data['room_name_err']) && empty($data['description_1_err']) && empty($data['description_2_err']) ){
           $fileNewName = uniqid('',true)."." .$fileActualExt;
           $fileDestination =   'images/'.$fileNewName;  
           move_uploaded_file($fileTempName, $fileDestination);
@@ -134,7 +132,7 @@ class Admin extends Controller{
             'room_name' => '',
             'description_1' => '',
             'description_2' => '',
-            'number_of_rooms' => '',
+
             'room_amount' => '',
             'booking_fee' => '',
 
@@ -178,7 +176,7 @@ class Admin extends Controller{
               'description_1' => trim($_POST['description_1']),
               'description_2' => trim($_POST['description_2']),
               'image_path' =>trim($_POST['image_path']),
-              'number_of_rooms' =>trim($_POST['number_of_rooms']),
+
               'room_amount' =>trim($_POST['room_amount']),
               'booking_fee' =>trim($_POST['booking_fee']),
 
@@ -196,9 +194,7 @@ class Admin extends Controller{
           if(empty($data['room_amount'])){
             $data['room_amount_err'] = 'Please enter room name';
     }
-          if(empty($data['number_of_rooms'])){
-            $data['number_of_rooms_err'] = 'Please enter room quantity';
-    }
+
           if(empty($data['description_1'])){
             $data['description_1_err'] = 'Please enter room description';
           }
@@ -219,7 +215,7 @@ class Admin extends Controller{
           }
    
            // Make sure errors are empty
-           if((empty($data['image_path_err']) && (empty($data['room_amount_err'])) && empty($data['room_name_err']) && empty($data['description_1_err']) && empty($data['description_2_err']) && empty($data['number_of_rooms_err']))){
+           if((empty($data['image_path_err']) && (empty($data['room_amount_err'])) && empty($data['room_name_err']) && empty($data['description_1_err']) && empty($data['description_2_err']) )){
            
             // if did not uoload new image
             if($fileName == true){
@@ -260,7 +256,7 @@ class Admin extends Controller{
           'description_1' => $room->description_1,
           'description_2' =>  $room->description_2,
           'image_path' => $room->image_path,
-          'number_of_rooms' => $room->number_of_rooms,
+ 
           'room_amount' => $room->room_amount,
           'booking_fee' => $room->booking_fee
 

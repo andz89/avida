@@ -20,14 +20,7 @@
             <div class="list-group-item  flex-column align-items-start  mt-1">
               <div  class="d-flex w-100 justify-content-between">
 
-              <span  class="btn btn-success  btn-sm py-0 my-1" >Number of rooms: <?php echo $rooms->number_of_rooms?></b>  </span><br> 
-
-              <span class="btn btn-primary btn-sm" data-toggle="collapse" href="#<?php echo $rooms->id?>" role="button" aria-expanded="false" aria-controls="<?php echo $rooms->id?>">
-             View Room Details
-            </span>
-              </div>
-            
-            <div class="d-flex w-100 justify-content-between mb-0">
+              <div class="d-flex w-100 justify-content-between mb-0">
               <div>
         
               <span class="fs-5"> <b>Room ID: </b>   <?php echo $rooms->id?> </b> </span>
@@ -38,10 +31,20 @@
 
 
               </div>
-       
-              <small class="mt-2"> <?php echo $rooms->date?> </small>
+         
+      
 
             </div>
+        <div>
+        <span class="btn btn-primary btn-sm" data-toggle="collapse" href="#<?php echo $rooms->id?>" role="button" aria-expanded="false" aria-controls="<?php echo $rooms->id?>">
+             View Room Details
+            </span><br>
+            <small class="mt-2"> <?php echo $rooms->date?> </small>
+        </div>
+    
+              </div>
+            
+           
             <div class="d-flex align-items-baseline mt-0 pt-0">
      
      <a target="blank" href="<?php echo URLROOT;?>/pages/room?id=<?php  echo $rooms->id  ?>" class="text-primary m-0 py-0 px-1" style="font-size :15px;" > view room </a> 
