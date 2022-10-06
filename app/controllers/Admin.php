@@ -430,6 +430,27 @@ class Admin extends Controller{
       }
         
        }
+       public function edit_notes(){
+
+     
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+          $data = [
+            'room_id' => trim($_POST['room_id']),
+            'notes' => trim($_POST['notes'])
+          ];
+         
+
+          
+          if($this->roomModel->edit_notes($data)){
+            print_r('sfsdf');
+            redirect('admin/disable_dates?id='. $data['room_id']);
+          }
+        }
+       }
+
+
+
 
        public function delete_dates(){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){

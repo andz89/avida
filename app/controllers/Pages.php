@@ -83,6 +83,8 @@ class Pages extends Controller{
 
       $rooms =  $this->roomModel->findRoomByRoom($_GET['id']);
       $date_taken = $this->userModel->getTakenDates($rooms->room_name);
+      $dates_disable = $this->roomModel->getDisableDates($_GET['id']);
+
 
     
           // Check for POST
@@ -112,7 +114,7 @@ class Pages extends Controller{
 
 
                 //check if room quantity is updated during changes of quantity ---start
-                $dates_disable =  disable_dates($date_taken,$rooms->number_of_rooms);
+                $dates =  disable_dates($date_taken,$rooms->number_of_rooms);
 
                 // Validate check_in_and_out
                 if(empty($data['check_in_and_out'])){
@@ -126,7 +128,7 @@ class Pages extends Controller{
                 $b_range = getBetweenDates($a[0], $a[1]);
                 $b  =  explode(" ", $b_range);
 
-                $result = array_merge($dates_disable, $b);
+                $result = array_merge($dates, $b);
                 $new_array = array_count_values($result);//check if naa ba same na date
           
               foreach($new_array as $li =>$key){
@@ -134,7 +136,7 @@ class Pages extends Controller{
               
                 $data['check_in_and_out_err'] = 'sorry! room limit is reached';
               
-                $data['date_disabled'] = $dates_disable;
+                $data['date_disabled'] = $dates;
                 $this->view('pages/booking', $data);
                 return false;
               }
@@ -212,10 +214,17 @@ class Pages extends Controller{
      
       
        
-            $dates_disable =  disable_dates($date_taken,$rooms->number_of_rooms);
+            $dates_not_available =  disable_dates($date_taken,$rooms->number_of_rooms);
+            $dates_block = [];
+            foreach($dates_disable as $dates ){
+              
+              array_push( $dates_block, $dates->disable_dates);
+            }
+          
 
-            array_push($dates_disable, '2022-10-02');
-        print_r($dates_disable);
+            $result = array_merge($dates_not_available, $dates_block);
+        
+     
             $data =  ['user_id' =>$_SESSION['user_id'],
                      'user_name'=> $_SESSION['user_name'],
                      'user_email'=> $_SESSION['user_email'],
@@ -226,7 +235,7 @@ class Pages extends Controller{
 
 
                      'room_name' => $rooms->room_name, 
-                     'date_disabled' => $dates_disable,
+                     'date_disabled' =>  $result ,
                      'number_adults'=> '',
                      'number_children'=> ''
                 ];   

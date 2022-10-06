@@ -128,7 +128,7 @@
 
       return $row;
     }
-
+ 
     public function delete_dates($id){
       $this->db->query('DELETE FROM disable_dates WHERE id = :id');
       // Bind values
@@ -140,6 +140,22 @@
       } else {
         return false;
       }
+    }
+    public function edit_notes($data){
+    
+      $this->db->query('UPDATE disable_dates SET notes = :notes WHERE room_id = :room_id');
+      // Bind values
+      $this->db->bind(':room_id', $data['room_id']);
+      $this->db->bind(':notes', $data['notes']);
+     
+
+      // Execute
+      if($this->db->execute()){
+        return true;
+      } else {
+        return false;
+      }
+     
     }
     public function delete_room($id){
 
