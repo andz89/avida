@@ -5,12 +5,12 @@
 
 
 <!-- start --------------------------------------------->
-<div class="container my-5 " style="height: 500px;width:100%; ">
+<div class="container my-2 ">
 
 <div class="row flex-lg-row-reverse align-items-center g-3 py-5">
-      <div class="col-10 col-sm-8 col-lg-6">
+      <div class="d-flex justify-content-center  col-lg-6 mb-2" >
 
-        <img src="<?php echo URLROOT;?>/images/hero-image_final.png " class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="1000"  loading="lazy">
+        <img src="<?php echo URLROOT;?>/images/hero-image_final.png "  alt="Bootstrap Themes" width="100%"  loading="lazy">
       </div>
       <div class="col-lg-6">
         <h1 class="display-6 fw-bold lh-1 mb-3">Enjoy and relax in our Hotel</h1>

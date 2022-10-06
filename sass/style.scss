@@ -2,7 +2,7 @@
 @import 'admin_navbar.scss';
 @import 'about.scss';
 @import 'footer.scss';
-@import "navbar.scss"; /* homepage */
+
 @import 'homePage.scss';
 @import 'call-section.scss';
 @import 'login.scss';
@@ -35,5 +35,9 @@
 *{
     margin: 0;
     padding: 0;
-    
+}
+
+body{
+    overflow-x:hidden;
+
 }
