@@ -114,7 +114,7 @@ class Pages extends Controller{
 
 
                 //check if room quantity is updated during changes of quantity ---start
-                $dates =  disable_dates($date_taken,$rooms->number_of_rooms);
+                $dates =  disable_dates($date_taken,1);
 
                 // Validate check_in_and_out
                 if(empty($data['check_in_and_out'])){
@@ -214,7 +214,7 @@ class Pages extends Controller{
      
       
        
-            $dates_not_available =  disable_dates($date_taken,$rooms->number_of_rooms);
+            $dates_not_available =  disable_dates($date_taken,1);
             $dates_block = [];
             foreach($dates_disable as $dates ){
               

@@ -27,10 +27,6 @@ function script_edit_rooms_admin(){
     return "
   
 
-
-
-
-
     let alert_flash = document.querySelector('.alert-flash')
     if(alert_flash.innerHTML == ' '){
 
