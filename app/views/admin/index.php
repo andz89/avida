@@ -29,11 +29,11 @@
   <ul class="list-group mb-2">
   <li class="list-group-item d-flex justify-content-between align-items-center bg-dark text-white">
   Rooms :
-    <span class="badge badge-primary badge-pill"> <b> <?php echo $data['added-rooms']?> </b></span>
+    <span class=" badge-primary badge-pill">  <?php echo $data['added-rooms']?> </span>
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center  bg-dark text-white">
   Users :
-    <span class="badge badge-primary badge-pill"><b>  <?php echo $data['users']?></b> </span>
+    <span class=" badge-primary badge-pill">  <?php echo $data['users']?> </span>
   </li>
   
 </ul>
@@ -44,11 +44,11 @@
   <ul class="list-group mb-2" >
   <li class="list-group-item d-flex justify-content-between align-items-center  bg-dark text-white">
   bookings : 
-    <span class="badge badge-primary badge-pill "><b><?php echo $data['added-book']?></b></span>
+    <span class=" badge-primary badge-pill "><?php echo $data['added-book']?></span>
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center  bg-dark text-white">
-  Tatal Payment Recieved : 
-    <span class="badge badge-primary badge-pill"> <b>500</b></span>
+  Tatal Booking Fee Recieved : 
+    <span class=" badge-primary badge-pill"> <?php echo number_format($data['payment_received']) ?> Pesos</span>
   </li>
 </ul>
 </div>

@@ -118,6 +118,13 @@
           return $this->db->rowCount();
 
         }
+        public function getBookingFee(){
+          $this->db->query('SELECT booking_fee FROM book');
+          $results = $this->db->resultSet();
+      
+          return $results;
+
+        }
         public function getTakenDates($data){
           // SELECT COL_NAME AS 'Column_Name', TAB_NAME AS 'Table_Name'
           $this->db->query('SELECT  booking_dates FROM  book WHERE room_name = :room_name');

@@ -9,16 +9,27 @@ class Admin extends Controller{
 
       $this->userCount = $this->userModel->getCountUsers();
       $this->roomCount = $this->roomModel->getCountRooms();
+      $this->payment_received = $this->userModel->getBookingFee();
+
       $this->bookCount = $this->userModel->getCountBookings();
  
 
      
     }
     public function index(){
-     
+      $total_received_payment =[];
+      foreach($this->payment_received  as $value){
+       
+        array_push($total_received_payment,$value->booking_fee);
+      }
+   
+      
+
       $data =  ['added-rooms'=>$this->roomCount,
                 'added-book' =>  $this->bookCount,
                 'users' =>  $this->userCount,
+                'payment_received' => array_sum($total_received_payment)
+
     ];   
 
       $this->view('admin/index', $data);
@@ -63,6 +74,8 @@ class Admin extends Controller{
             'description_2' => trim($_POST['description_2']),
             'number_of_rooms' => trim($_POST['number_of_rooms']),
             'room_amount' => trim($_POST['room_amount']),
+            'booking_fee' => trim($_POST['booking_fee']),
+
             'image_path' =>'',
             'room_name_err' => '',
             'description_1_err'=> '',
@@ -79,7 +92,10 @@ class Admin extends Controller{
   }
         if(empty($data['number_of_rooms'])){
           $data['number_of_rooms_err'] = 'Please enter room quantity';
-  }
+         }
+         if(empty($data['booking_fee'])){
+          $data['booking_err'] = 'Please enter booking fee';
+         }
         if(empty($data['description_1'])){
           $data['description_1_err'] = 'Please enter room description';
         }
@@ -94,8 +110,9 @@ class Admin extends Controller{
           $data['image_path_err'] = 'there was an error uploading your photo';
 
         }
+       
          // Make sure errors are empty
-         if(empty($data['image_path_err']) && empty($data['room_amount_err']) && empty($data['room_name_err']) && empty($data['description_1_err']) && empty($data['description_2_err']) &&  empty($data['number_of_rooms_err'])){
+         if(empty($data['image_path_err']) && empty($data['booking_err']) && empty($data['room_amount_err']) && empty($data['room_name_err']) && empty($data['description_1_err']) && empty($data['description_2_err']) &&  empty($data['number_of_rooms_err'])){
           $fileNewName = uniqid('',true)."." .$fileActualExt;
           $fileDestination =   'images/'.$fileNewName;  
           move_uploaded_file($fileTempName, $fileDestination);
@@ -108,10 +125,9 @@ class Admin extends Controller{
             die('something went wrong');
           }
          }else{
+     
           $this->view('admin/add_room', $data);
          }
-
-
 
           }else{
             $data =  [
@@ -307,9 +323,6 @@ class Admin extends Controller{
                    'update_at' => date("Y-m-d H:i:s"),
 
                   
-
-
-                  
                  ];
                    // Validate Email
           if(empty($data['email'])){
@@ -356,5 +369,81 @@ class Admin extends Controller{
 
               }
               
+       public function disable_dates(){
+        $room =  $this->roomModel->getroom($_GET['id']);
+        $disable_date =  $this->roomModel->getDisableDates($_GET['id']);
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        
+          // Init data
+          
+          $data =[
+           'disable_dates' => trim($_POST['disable_dates']),
+           'room_id' =>$room->id,
+            'notes'=> trim($_POST['notes']),
+            'disable_dates_err'=> '',
+            'note_err'=> '',
+
+
+            'room_name' =>$room->room_name,
+           
+            'display_disable_dates'=> $disable_date
+         ];
+        
+          // Validate address
+          if(empty($data['disable_dates'])){
+          $data['disable_dates_err'] = 'Please enter dates';
+          }
+
        
+         // Validate notes
+         if(empty($data['notes'])){
+          $data['notes_err'] = 'Please enter notes';
+          }
+
+          // Make sure errors are empty
+          if(empty($data['disable_dates_err']) && empty($data['notes_err']) ){
+            if($this->roomModel->disable_dates($data)){
+              redirect('admin/disable_dates?id='. $room->id );
+        
+          }else{
+            die('something went wrong');
+          }
+          }else{
+            // Load view with errors
+            // flash('contact_update', 'Contact updated successfuly');
+        
+            $this->view('admin/disable_dates', $data);
+          }
+      }else{
+    
+    
+      $data= [
+      'room_name' =>$room->room_name,
+      'room_id' =>$room->id,
+      'display_disable_dates'=>($disable_date)?  $disable_date : '',
+      'notes' => '',
+      'disable_dates'=>'',
+      ];
+      $this->view('admin/disable_dates', $data);
+      }
+        
+       }
+
+       public function delete_dates(){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+          $data = [
+            'room_id' => trim($_POST['room_id']),
+
+          ];
+
+          if($this->roomModel->delete_dates($_GET['id'])){
+        
+            redirect('admin/disable_dates?id='. $data['room_id']);
+          }
+        }
+       }
 }

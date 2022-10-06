@@ -11,7 +11,7 @@
       <div class="card card-body bg-light ">
         <h6>User Name: <strong> <?php echo $data['user_name'] ?></strong></h6>
         <h6>User Email: <strong> <?php echo $data['user_email'] ?></strong></h6>
-
+        <h6>User Contact Number: <strong> <?php echo $data['user_number'] ?></strong></h6>
         <h6>Room ID: <strong> <?php echo $data['room_id'] ?></strong></h6>
         <h6>Room Type: <strong> <?php echo $data['room_name'] ?></strong></h6>
         <h6>Room Amount: <strong> <?php echo $data['room_amount'] ?></strong>  Pesos</h6>

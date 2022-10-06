@@ -31,6 +31,10 @@
             <span><b>Number of Adults:  </b> <?php echo $bookings->number_adults?></span><br>
             <span><b>Number of Children: </b>  <?php echo $bookings->number_children?></span><br>
             <span><b>Booking Dates:</b> <?php echo $bookings->check_in_and_out  ?></span><br>
+            <span><b>Contact Number:</b> <?php echo $bookings->user_number  ?></span><br>
+            <span><b>Email:</b> <?php echo $bookings->user_email  ?></span><br>
+
+            
 
 
             </li>

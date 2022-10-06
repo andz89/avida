@@ -66,6 +66,7 @@ class Pages extends Controller{
         $this->view('pages/room', $data);
     }
     public function booking(){
+
       if(!$_SESSION['user_id']){
         redirect('users/login');
         return false;
@@ -80,23 +81,15 @@ class Pages extends Controller{
       }
    
 
-     
-
       $rooms =  $this->roomModel->findRoomByRoom($_GET['id']);
       $date_taken = $this->userModel->getTakenDates($rooms->room_name);
 
-        
+    
           // Check for POST
           check_id($_GET['id'], 'index');#room id
       
-    
           if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-        
-        
-           
-       
-         
             $data =  ['booking_id'=> uniqid('', true),
                     'user_id' =>$_SESSION['user_id'],
                      'user_name'=> $_SESSION['user_name'],
@@ -116,17 +109,17 @@ class Pages extends Controller{
                     'number_children_err' => ''
                 ]; 
             
-                //check if room quatity is updated during changes of quantity
-         
-                $dates_disable =  disable_dates($date_taken,$rooms->number_of_rooms);
-                
-               
-                  // Validate check_in_and_out
-                  if(empty($data['check_in_and_out'])){
-                    $data['check_in_and_out_err'] = 'Pleae enter range dates';
-                  $this->view('pages/booking', $data);
 
-                    return false;
+
+                //check if room quantity is updated during changes of quantity ---start
+                $dates_disable =  disable_dates($date_taken,$rooms->number_of_rooms);
+
+                // Validate check_in_and_out
+                if(empty($data['check_in_and_out'])){
+                $data['check_in_and_out_err'] = 'Pleae enter range dates';
+                $this->view('pages/booking', $data);
+
+                return false;
                 }
 
                 $a  =  explode("to",$data['check_in_and_out']);
@@ -134,20 +127,22 @@ class Pages extends Controller{
                 $b  =  explode(" ", $b_range);
 
                 $result = array_merge($dates_disable, $b);
-                $new_array = array_count_values($result);
+                $new_array = array_count_values($result);//check if naa ba same na date
           
               foreach($new_array as $li =>$key){
               if($key  > 1){
               
-                $data['check_in_and_out_err'] = 'soory! room limit is reached Please refresh the page!';
-           
+                $data['check_in_and_out_err'] = 'sorry! room limit is reached';
+              
+                $data['date_disabled'] = $dates_disable;
                 $this->view('pages/booking', $data);
                 return false;
               }
               }
+                //check if room quantity is updated during changes of quantity ---end
 
 
-                                // Validate Email
+                    // Validate Email
                     if(empty($data['number_adults'])){
                         $data['number_adults_err'] = 'Pleae enter number_adults';
                     }
@@ -162,6 +157,7 @@ class Pages extends Controller{
 
                    }
 
+                   //check if range date is only day 1
                    $string_num = strlen($data['check_in_and_out']);
 
                    if($string_num == 10){
@@ -217,13 +213,17 @@ class Pages extends Controller{
       
        
             $dates_disable =  disable_dates($date_taken,$rooms->number_of_rooms);
-        
+
+            array_push($dates_disable, '2022-10-02');
+        print_r($dates_disable);
             $data =  ['user_id' =>$_SESSION['user_id'],
                      'user_name'=> $_SESSION['user_name'],
                      'user_email'=> $_SESSION['user_email'],
                      'room_id' =>$rooms->id,
                      'booking_fee' =>$rooms->booking_fee,
                      'room_amount' =>$rooms->room_amount,
+                     'user_number'=> $_SESSION['user_contact_number'],
+
 
                      'room_name' => $rooms->room_name, 
                      'date_disabled' => $dates_disable,

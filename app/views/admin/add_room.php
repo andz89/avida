@@ -14,18 +14,18 @@
 
   <div class="form-group">
     <label for="number_of_rooms">Room Quantity</label>
-    <input name="number_of_rooms" type="number" class="form-control form-control-lg <?php echo (!empty($data['number_of_rooms_err'])) ? 'is-invalid' : ''; ?>"  value="<?php echo $data['number_of_rooms'] ?> " > 
+    <input name="number_of_rooms" type="number" class="form-control form-control-lg <?php echo (!empty($data['number_of_rooms_err'])) ? 'is-invalid' : ''; ?>"  value="<?php echo $data['number_of_rooms'] ?>" > 
     <span class="invalid-feedback"><?php echo $data['number_of_rooms_err']; ?></span>
     
   </div>  
   <div class="form-group">
     <label for="room_amount">Room amount</label>
-    <input name="room_amount" type="number" class="form-control form-control-lg <?php echo (!empty($data['room_amount_err'])) ? 'is-invalid' : ''; ?>"  value="<?php echo $data['room_amount'] ?> " > 
+    <input name="room_amount" type="number" class="form-control form-control-lg <?php echo (!empty($data['room_amount_err'])) ? 'is-invalid' : ''; ?>"  value="<?php echo $data['room_amount'] ?>" > 
     <span class="invalid-feedback"><?php echo $data['room_amount_err']; ?></span>
   </div>  
   <div class="form-group">
     <label for="booking_fee">booking fee</label>
-    <input name="booking_fee" type="number" class="form-control form-control-lg <?php echo (!empty($data['booking_fee_err'])) ? 'is-invalid' : ''; ?>"  value="<?php echo $data['booking_fee'] ?> " > 
+    <input name="booking_fee" type="number" class="form-control form-control-lg <?php echo (!empty($data['booking_fee_err'])) ? 'is-invalid' : ''; ?>"  value="<?php echo $data['booking_fee'] ?>" > 
     <span class="invalid-feedback"><?php echo $data['booking_fee_err']; ?></span>
   </div>  
   <div class="form-group">
@@ -44,9 +44,9 @@
  
 
   <div class="form-group">
-  <label for="image_big">Room Name</label>
-    <input type="file" id="imgInput" name="image_big" class="form-control form-control-lg <?php echo (!empty($data['image_big_err'])) ? 'is-invalid' : ''; ?>"  value="">
-    <span class="invalid-feedback"><?php echo $data['image_big_err']; ?></span>
+  <label for="image_path">Image</label>
+    <input type="file" id="imgInput" name="image_path" class="form-control form-control-lg <?php echo (!empty($data['image_path_err'])) ? 'is-invalid' : ''; ?>"  value="">
+    <span class="invalid-feedback"><?php echo $data['image_path_err']; ?></span>
 
   </div>
 

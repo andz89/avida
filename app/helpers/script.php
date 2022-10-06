@@ -77,11 +77,14 @@ function disable_dates($array,$quantity){
   array_push($data, $li->booking_dates);
   }
   $i = implode(' ', $data);
+
   $e = explode(' ', $i);
+
   $new_array = array_count_values($e);
     $final = [];
   foreach($new_array as $li =>$key){
-  if($key  > $quantity){
+ 
+  if($key  == $quantity){
     array_push($final, $li);
   }
   }

@@ -32,7 +32,7 @@
         
               <span class="fs-5"> <b>Room ID: </b>   <?php echo $rooms->id?> </b> </span>
 
-              <h6> <b> Room name:</b>   <?php echo $rooms->room_name?></b></h6>
+              <h6> <b> Room name:</b>   <?php echo $rooms->room_name ?></b></h6>
               <h6> <b> Room Pricce:</b>   <?php echo $rooms->room_amount?></b></h6>
               <h6> <b>Booking fee:</b>   <?php echo $rooms->booking_fee?></b></h6>
 
@@ -47,13 +47,15 @@
      <a target="blank" href="<?php echo URLROOT;?>/pages/room?id=<?php  echo $rooms->id  ?>" class="text-primary m-0 py-0 px-1" style="font-size :15px;" > view room </a> 
 
      <a href="<?php echo URLROOT;?>/admin/edit_room?id=<?php  echo $rooms->id  ?>" class=" text-primary m-0 py-0 px-1 " style="font-size :15px;" >Edit Room </a>
-      <!-- Button trigger modal -->
-      <a class="text-primary m-0 py-0 px-1" href=""  style="font-size :15px;" data-toggle="modal" data-target="#delete">
+    
+     <!-- Button trigger delete modal -->
+      <a class="text-primary m-0 py-0 px-1" href=""  style="font-size :15px;" data-toggle="modal" data-target="#<?php  echo $rooms->id  ?>-delete">
       Delete
-      </a>
-
-<!-- Modal -->
-<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      </a>  
+ <!-- Button trigger disable dates modal -->
+ <a class="text-primary m-0 py-0 px-1" href="<?php echo URLROOT;?>/admin/disable_dates?id=<?php echo $rooms->id  ?>"  style="font-size :15px;" >Disable Dates</a>  
+<!-- Modal delete-->
+<div class="modal fade" id="<?php  echo $rooms->id  ?>-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog" role="document">
 <div class="modal-content">
  <div class="modal-header">
@@ -67,7 +69,7 @@
 
  </div>
  <div class="modal-footer">
- <form action="<?php echo URLROOT;?>/admin/delete?id=<?php  echo $rooms->id  ?>"  method="post" enctype="multipart/form-data">
+ <form action="<?php echo URLROOT;?>/admin/delete?id=<?php  echo $rooms->id  ?>"  method="post">
     
     <input class="btn btn-danger btn-md" style="font-size :12px; background-color:none;" type="submit" value="Delete">
     </form>
@@ -76,7 +78,7 @@
 </div>
 </div>
 
-     
+
 </div>
             <!-- hide area -->
             <div class="collapse" id="<?php echo $rooms->id?>">
@@ -107,6 +109,7 @@
 
 </div>
 </div>
+
 
 <?php require APPROOT . '/views/inc/script_bootstrap.php';?>
 

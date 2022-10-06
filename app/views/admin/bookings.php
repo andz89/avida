@@ -43,7 +43,7 @@
             <hr class="my-2 mx-5 bg-white ">
             <div class="list-unstyled p-2 "style="background-color:#FFF6BF">
             <li class="mb-1"><b>Email: </b><?php echo $booking->user_email?></li>
-            <li><b>Contact No. :</b>  <?php echo $booking->contact_number?></li>
+            <li><b>Contact No. :</b>  <?php echo $booking->user_number?></li>
 
             <li><b> Room Type:</b>  <?php echo $booking->room_name ?></li>
             <li><b>Number of Adults:  </b> <?php echo $booking->number_adults?></li>
