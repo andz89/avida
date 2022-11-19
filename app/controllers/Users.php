@@ -28,8 +28,8 @@ class Users extends Controller
         'password' => trim($_POST['password']),
         'confirm_password' => trim($_POST['confirm_password']),
         'role' => trim($_POST['role']),
-        'contanct_number' => trim($_POST['contact_number']),
-
+        'contact_number' => trim($_POST['contact_number']),
+        'contact_number_err' => "",
         'name_err' => '',
         'email_err' => '',
         'password_err' => '',
